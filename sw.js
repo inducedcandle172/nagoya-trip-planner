@@ -3,27 +3,27 @@ const STATIC_CACHE = 'static-v1';
 const DYNAMIC_CACHE = 'dynamic-v1';
 
 const STATIC_ASSETS = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/manifest.json',
-    '/day1.html',
-    '/day2.html',
-    '/day3.html',
-    '/day4.html',
-    '/day5.html',
-    '/day6.html',
-    '/day7.html',
-    '/icons/icon-72x72.png',
-    '/icons/icon-96x96.png',
-    '/icons/icon-128x128.png',
-    '/icons/icon-144x144.png',
-    '/icons/icon-152x152.png',
-    '/icons/icon-192x192.png',
-    '/icons/icon-384x384.png',
-    '/icons/icon-512x512.png',
-    '/icons/today.png',
-    '/icons/saved.png'
+    '/nagoya-trip-planner/',
+    '/nagoya-trip-planner/index.html',
+    '/nagoya-trip-planner/styles.css',
+    '/nagoya-trip-planner/manifest.json',
+    '/nagoya-trip-planner/day1.html',
+    '/nagoya-trip-planner/day2.html',
+    '/nagoya-trip-planner/day3.html',
+    '/nagoya-trip-planner/day4.html',
+    '/nagoya-trip-planner/day5.html',
+    '/nagoya-trip-planner/day6.html',
+    '/nagoya-trip-planner/day7.html',
+    '/nagoya-trip-planner/icons/icon-72x72.png',
+    '/nagoya-trip-planner/icons/icon-96x96.png',
+    '/nagoya-trip-planner/icons/icon-128x128.png',
+    '/nagoya-trip-planner/icons/icon-144x144.png',
+    '/nagoya-trip-planner/icons/icon-152x152.png',
+    '/nagoya-trip-planner/icons/icon-192x192.png',
+    '/nagoya-trip-planner/icons/icon-384x384.png',
+    '/nagoya-trip-planner/icons/icon-512x512.png',
+    '/nagoya-trip-planner/icons/today.png',
+    '/nagoya-trip-planner/icons/saved.png'
 ];
 
 // Install Service Worker

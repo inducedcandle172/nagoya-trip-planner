@@ -156,7 +156,7 @@
         // Register Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('/nagoya-trip-planner/sw.js')
                     .then(registration => {
                         console.log('ServiceWorker registration successful');
                         // Request notification permission
@@ -173,10 +173,7 @@
         // Generate QR Code
         window.addEventListener('load', () => {
             const qr = qrcode(0, 'M');
-            // Use the current URL if it's already on GitHub Pages, otherwise use the correct GitHub Pages URL
-            const siteUrl = window.location.hostname.includes('github.io') 
-                ? window.location.href 
-                : 'https://inducedcande172.github.io/nagoya-trip-planner/';
+            const siteUrl = 'https://inducedcandle172.github.io/nagoya-trip-planner/';
             qr.addData(siteUrl);
             qr.make();
             document.getElementById('qrcode').innerHTML = qr.createImgTag(6);

@@ -16,15 +16,31 @@ const urlsToCache = [
     '/duration.html',
     '/budget.html',
     '/itinerary.html',
+    '/icons/icon-72x72.png',
+    '/icons/icon-96x96.png',
+    '/icons/icon-128x128.png',
+    '/icons/icon-144x144.png',
+    '/icons/icon-152x152.png',
     '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png'
+    '/icons/icon-384x384.png',
+    '/icons/icon-512x512.png',
+    '/icons/splash-1290x2796.png',
+    '/icons/splash-1179x2556.png',
+    '/icons/splash-1284x2778.png',
+    '/icons/splash-1170x2532.png',
+    '/icons/splash-1125x2436.png',
+    'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap',
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
 ];
 
 // Install service worker
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(urlsToCache))
+            .then(cache => {
+                console.log('Opened cache');
+                return cache.addAll(urlsToCache);
+            })
     );
 });
 
@@ -33,19 +49,22 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request)
+                // Return cached version or fetch new
+                return response || fetch(event.request)
                     .then(response => {
+                        // Check if we received a valid response
                         if (!response || response.status !== 200 || response.type !== 'basic') {
                             return response;
                         }
+
+                        // Clone the response
                         const responseToCache = response.clone();
+
                         caches.open(CACHE_NAME)
                             .then(cache => {
                                 cache.put(event.request, responseToCache);
                             });
+
                         return response;
                     });
             })

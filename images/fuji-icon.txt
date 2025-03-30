@@ -1,0 +1,11 @@
+To create the Mount Fuji favicon:
+
+1. Create a 32x32 pixel PNG image
+2. Use a simple design with:
+   - White background
+   - Blue sky gradient at the top
+   - White snow-capped mountain in the middle
+   - Dark base at the bottom
+3. Save it as 'fuji-icon.png' in the images folder
+
+The icon should be simple and recognizable even at small sizes. 

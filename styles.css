@@ -7,16 +7,17 @@
 }
 
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2980b9;
-    --accent-color: #e74c3c;
-    --background-color: #f8f9fa;
-    --text-color: #2c3e50;
-    --border-color: #e1e8ed;
+    --primary-color: #B22222;  /* Deep red, reminiscent of Japanese red */
+    --secondary-color: #2F4F4F;  /* Dark slate, like traditional Japanese ink */
+    --accent-color: #DAA520;  /* Golden color for highlights */
+    --background-color: #F5F5DC;  /* Beige background */
+    --text-color: #2F4F4F;  /* Dark slate for text */
+    --border-color: #8B4513;  /* Brown for borders */
     --card-background: #ffffff;
     --border-radius: 16px;
     --shadow: 0 4px 6px rgba(0,0,0,0.1);
     --transition: all 0.3s ease;
+    --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -26,6 +27,10 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
+    background-image: url('images/japanese-pattern.png');
+    background-repeat: repeat;
+    background-size: 200px;
+    background-opacity: 0.1;
 }
 
 body::before {
@@ -50,13 +55,12 @@ body::before {
 /* Header Styles */
 .app-header {
     position: relative;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-color: var(--primary-color);
     color: white;
-    padding: 2rem 1rem;
-    border-radius: var(--border-radius);
-    margin-bottom: 2rem;
+    padding: 1rem;
     text-align: center;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    border-bottom: 3px solid var(--accent-color);
 }
 
 .app-header::before {
@@ -65,9 +69,8 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.8), rgba(46, 204, 113, 0.8));
-    z-index: 1;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color), var(--accent-color));
 }
 
 .app-header h1 {
@@ -288,33 +291,30 @@ body::before {
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--card-background);
+    background-color: white;
     display: flex;
     justify-content: space-around;
-    padding: 0.8rem 1rem;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid var(--border-color);
+    padding: 1rem;
+    box-shadow: 0 -2px 4px var(--shadow-color);
+    border-top: 2px solid var(--accent-color);
 }
 
 .nav-item {
+    color: var(--text-color);
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    color: #666;
-    font-size: 0.8rem;
-    transition: var(--transition);
-    padding: 0.5rem;
-    border-radius: 8px;
-    min-width: 60px;
+    transition: color 0.3s;
+}
+
+.nav-item:hover {
+    color: var(--primary-color);
 }
 
 .nav-item i {
-    font-size: 1.4rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .nav-item span {
@@ -458,7 +458,7 @@ body.offline::before {
 }
 
 .info-section h2 {
-    color: #2c3e50;
+    color: var(--primary-color);
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -483,11 +483,12 @@ body.offline::before {
 
 /* Activity Item Styles */
 .activity-item {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
+    background-color: white;
+    border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    border: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
 }
@@ -498,11 +499,8 @@ body.offline::before {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.1;
-    z-index: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
 }
 
 .activity-item[data-activity="breakfast"]::before {
@@ -539,27 +537,29 @@ body.offline::before {
 }
 
 .activity-time {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
 .activity-title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--text-color);
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
 }
 
 .activity-location {
-    color: var(--text-secondary);
+    color: var(--text-color);
     margin-bottom: 0.5rem;
 }
 
 .activity-notes {
-    color: var(--text-secondary);
+    color: var(--text-color);
     margin-bottom: 1rem;
-    font-size: 0.95rem;
+    font-style: italic;
 }
 
 .activity-links {
@@ -580,14 +580,14 @@ body.offline::before {
 
 .activity-links .btn:hover {
     transform: translateY(-2px);
-    background-color: var(--primary-color-dark);
+    background-color: var(--secondary-color);
 }
 
 .map-container {
     margin: 1rem 0;
-    border-radius: var(--border-radius);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: var(--card-shadow);
+    border: 2px solid var(--border-color);
 }
 
 .map-container iframe {
@@ -685,22 +685,35 @@ body.offline::before {
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
-    color: #666;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
 }
 
-.form-group input,
-.form-group select {
+.form-control {
     width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: white;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(178, 34, 34, 0.2);
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
 }
 
 .submit-btn {
@@ -716,7 +729,7 @@ body.offline::before {
 }
 
 .submit-btn:hover {
-    background: #2980b9;
+    background: var(--secondary-color);
 }
 
 .expenses-list {

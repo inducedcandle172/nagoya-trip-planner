@@ -1,0 +1,14 @@
+{
+  "appId": "com.nagoyatripplanner.app",
+  "appName": "Nagoya Trip Planner",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#ffffff",
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true
+  }
+} 

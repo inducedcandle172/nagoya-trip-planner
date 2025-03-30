@@ -1,100 +1,81 @@
-const CACHE_NAME = 'nagoya-trip-v1';
-const STATIC_CACHE = 'static-v1';
-const DYNAMIC_CACHE = 'dynamic-v1';
-
-const STATIC_ASSETS = [
-    '/nagoya-trip-planner/',
-    '/nagoya-trip-planner/index.html',
-    '/nagoya-trip-planner/styles.css',
-    '/nagoya-trip-planner/manifest.json',
-    '/nagoya-trip-planner/day1.html',
-    '/nagoya-trip-planner/day2.html',
-    '/nagoya-trip-planner/day3.html',
-    '/nagoya-trip-planner/day4.html',
-    '/nagoya-trip-planner/day5.html',
-    '/nagoya-trip-planner/day6.html',
-    '/nagoya-trip-planner/day7.html',
-    '/nagoya-trip-planner/icons/icon-72x72.png',
-    '/nagoya-trip-planner/icons/icon-96x96.png',
-    '/nagoya-trip-planner/icons/icon-128x128.png',
-    '/nagoya-trip-planner/icons/icon-144x144.png',
-    '/nagoya-trip-planner/icons/icon-152x152.png',
-    '/nagoya-trip-planner/icons/icon-192x192.png',
-    '/nagoya-trip-planner/icons/icon-384x384.png',
-    '/nagoya-trip-planner/icons/icon-512x512.png',
-    '/nagoya-trip-planner/icons/today.png',
-    '/nagoya-trip-planner/icons/saved.png'
+const CACHE_NAME = 'nagoya-trip-planner-v1';
+const urlsToCache = [
+    '/',
+    '/index.html',
+    '/styles.css',
+    '/manifest.json',
+    '/icons/icon-72x72.png',
+    '/icons/icon-96x96.png',
+    '/icons/icon-128x128.png',
+    '/icons/icon-144x144.png',
+    '/icons/icon-152x152.png',
+    '/icons/icon-192x192.png',
+    '/icons/icon-384x384.png',
+    '/icons/icon-512x512.png',
+    '/day1.html',
+    '/day2.html',
+    '/day3.html',
+    '/day4.html',
+    '/day5.html',
+    '/day6.html',
+    '/day7.html',
+    '/budget.html',
+    '/itinerary.html',
+    'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap',
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
 ];
 
-// Install Service Worker
+// Install service worker
 self.addEventListener('install', event => {
     event.waitUntil(
-        Promise.all([
-            caches.open(STATIC_CACHE).then(cache => cache.addAll(STATIC_ASSETS)),
-            caches.open(DYNAMIC_CACHE),
-            self.skipWaiting()
-        ])
-    );
-});
-
-// Activate Service Worker
-self.addEventListener('activate', event => {
-    event.waitUntil(
-        Promise.all([
-            self.clients.claim(),
-            caches.keys().then(keys => {
-                return Promise.all(
-                    keys.map(key => {
-                        if (key !== STATIC_CACHE && key !== DYNAMIC_CACHE) {
-                            return caches.delete(key);
-                        }
-                    })
-                );
+        caches.open(CACHE_NAME)
+            .then(cache => {
+                console.log('Opened cache');
+                return cache.addAll(urlsToCache);
             })
-        ])
     );
 });
 
-// Fetch Event
+// Cache and return requests
 self.addEventListener('fetch', event => {
-    // Handle API requests
-    if (event.request.url.includes('/api/')) {
-        event.respondWith(
-            fetch(event.request)
-                .then(response => {
-                    const clonedResponse = response.clone();
-                    caches.open(DYNAMIC_CACHE).then(cache => {
-                        cache.put(event.request, clonedResponse);
-                    });
-                    return response;
-                })
-                .catch(() => {
-                    return caches.match(event.request);
-                })
-        );
-        return;
-    }
-
-    // Handle static assets
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request)
+                // Return cached version or fetch new
+                return response || fetch(event.request)
                     .then(response => {
+                        // Check if we received a valid response
                         if (!response || response.status !== 200 || response.type !== 'basic') {
                             return response;
                         }
+
+                        // Clone the response
                         const responseToCache = response.clone();
-                        caches.open(DYNAMIC_CACHE)
+
+                        caches.open(CACHE_NAME)
                             .then(cache => {
                                 cache.put(event.request, responseToCache);
                             });
+
                         return response;
                     });
             })
+    );
+});
+
+// Update service worker
+self.addEventListener('activate', event => {
+    const cacheWhitelist = [CACHE_NAME];
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
     );
 });
 

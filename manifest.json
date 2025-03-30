@@ -59,14 +59,14 @@
     ],
     "screenshots": [
         {
-            "src": "/nagoya-trip-planner/screenshots/home.png",
+            "src": "screenshots/home.png",
             "sizes": "1080x1920",
             "type": "image/png",
             "platform": "narrow",
             "label": "Home Screen"
         },
         {
-            "src": "/nagoya-trip-planner/screenshots/day.png",
+            "src": "screenshots/day.png",
             "sizes": "1080x1920",
             "type": "image/png",
             "platform": "narrow",
@@ -78,15 +78,15 @@
             "name": "Today's Activities",
             "short_name": "Today",
             "description": "View today's itinerary",
-            "url": "/nagoya-trip-planner/today",
-            "icons": [{ "src": "/nagoya-trip-planner/icons/today.png", "sizes": "192x192" }]
+            "url": "/today",
+            "icons": [{ "src": "icons/today.png", "sizes": "192x192" }]
         },
         {
             "name": "Saved Places",
             "short_name": "Saved",
             "description": "View your saved locations",
-            "url": "/nagoya-trip-planner/saved",
-            "icons": [{ "src": "/nagoya-trip-planner/icons/saved.png", "sizes": "192x192" }]
+            "url": "/saved",
+            "icons": [{ "src": "icons/saved.png", "sizes": "192x192" }]
         }
     ]
 } 

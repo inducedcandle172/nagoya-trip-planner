@@ -44,32 +44,36 @@
 
         <div class="activities-section">
             <h2><i class="fas fa-calendar-day"></i> <span data-translate="daily-activities">Daily Activities</span></h2>
-            <div class="activity-item" data-activity="breakfast">
-                <div class="activity-time" data-translate="time">Time: 15:00</div>
-                <div class="activity-title" data-translate="check-in">Check-in at Hotel</div>
-                <div class="activity-location" data-translate="richmond-hotel-address">Location: 2-35-14 Meieki, Nakamura-ku, Nagoya, Aichi 450-0002</div>
-                <div class="activity-notes" data-translate="richmond-hotel-notes">Notes: Modern hotel with buffet breakfast, located near Nagoya Station</div>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.8280305550287!2d136.88431531525815!3d35.171899979999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376c1fd9a0fd1%3A0x696f2e8a3c1b3b3b!2sRichmond%20Hotel%20Nagoya%20Nayabashi!5e0!3m2!1sen!2sjp!4v1625760000000!5m2!1sen!2sjp" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            
+            <div class="activity-grid">
+                <div class="activity-row">
+                    <div class="activity-cell time-cell" contenteditable="true" data-placeholder="Time">15:00</div>
+                    <div class="activity-cell title-cell" contenteditable="true" data-placeholder="Activity">Check-in at Hotel</div>
+                    <div class="activity-cell location-cell" contenteditable="true" data-placeholder="Location">Richmond Hotel Nagoya Nayabashi</div>
+                    <div class="activity-cell notes-cell" contenteditable="true" data-placeholder="Notes">Modern hotel with buffet breakfast, located near Nagoya Station</div>
+                    <div class="activity-cell status-cell">
+                        <span class="status-indicator confirmed">✓</span>
+                    </div>
                 </div>
-                <div class="activity-links">
-                    <a href="https://richmondhotel.jp/nagoya-nayabashi/" target="_blank" class="btn" data-translate="visit-website">Visit Website</a>
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=Richmond+Hotel+Nagoya+Nayabashi" target="_blank" class="btn" data-translate="get-directions">Get Directions</a>
+
+                <div class="activity-row">
+                    <div class="activity-cell time-cell" contenteditable="true" data-placeholder="Time">16:30</div>
+                    <div class="activity-cell title-cell" contenteditable="true" data-placeholder="Activity">Visit Nagoya Castle</div>
+                    <div class="activity-cell location-cell" contenteditable="true" data-placeholder="Location">1-1 Honmaru, Naka-ku</div>
+                    <div class="activity-cell notes-cell" contenteditable="true" data-placeholder="Notes">Historic castle with beautiful gardens and museum</div>
+                    <div class="activity-cell status-cell">
+                        <span class="status-indicator pending">⏳</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="activity-item" data-activity="nagoya-castle">
-                <div class="activity-time" data-translate="time">Time: 16:30</div>
-                <div class="activity-title">Visit Nagoya Castle</div>
-                <div class="activity-location" data-translate="nagoya-castle-address">Location: 1-1 Honmaru, Naka-ku, Nagoya, Aichi 460-0031</div>
-                <div class="activity-notes" data-translate="nagoya-castle-notes">Notes: Historic castle with beautiful gardens and museum</div>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.8280305550287!2d136.88431531525815!3d35.171899979999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376c1fd9a0fd1%3A0x696f2e8a3c1b3b3b!2sNagoya+Castle!5e0!3m2!1sen!2sjp!4v1625760000000!5m2!1sen!2sjp" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-                <div class="activity-links">
-                    <a href="https://www.nagoyajo.city.nagoya.jp/" target="_blank" class="btn" data-translate="visit-website">Visit Website</a>
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=Nagoya+Castle" target="_blank" class="btn" data-translate="get-directions">Get Directions</a>
-                </div>
+            <div class="activity-controls">
+                <button class="add-activity">
+                    <i class="fas fa-plus"></i> Add Activity
+                </button>
+                <button class="save-activities">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
             </div>
         </div>
         
@@ -78,8 +82,8 @@
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
-            <a href="itinerary-editor.html" class="nav-item">
-                <i class="fas fa-calendar-alt"></i>
+            <a href="itinerary.html" class="nav-item">
+                <i class="fas fa-edit"></i>
                 <span>Itinerary</span>
             </a>
             <a href="budget.html" class="nav-item">

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Event Details - Nagoya Trip Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <header class="app-header">
+            <h1>Event Details</h1>
+            <p class="subtitle">Explore your itinerary locations</p>
+        </header>
+
+        <div class="event-details-container">
+            <!-- Selection Controls -->
+            <div class="selection-controls">
+                <div class="control-group">
+                    <label for="daySelect">Select Day:</label>
+                    <div class="custom-select" id="daySelect">
+                        <div class="selected-option" data-placeholder="Choose a day..."></div>
+                        <div class="options-list">
+                            <div class="option" data-value="1">Day 1 - Arrival & Nagoya Highlights</div>
+                            <div class="option" data-value="2">Day 2 - Technology & Science</div>
+                            <div class="option" data-value="3">Day 3 - Theme Park & Shopping</div>
+                            <div class="option" data-value="4">Day 4 - UNESCO Village</div>
+                            <div class="option" data-value="5">Day 5 - Culture & Gardens</div>
+                            <div class="option" data-value="6">Day 6 - Hida Beef & Takayama</div>
+                            <div class="option" data-value="7">Day 7 - Departure</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="locationSelect">Select Location:</label>
+                    <div class="custom-select" id="locationSelect">
+                        <div class="selected-option" data-placeholder="Choose a location..."></div>
+                        <div class="options-list">
+                            <!-- Will be populated dynamically based on selected day -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Details Card -->
+            <div class="location-details-card">
+                <div class="location-header">
+                    <div class="location-title">
+                        <h2 id="locationName">Select a location</h2>
+                        <span class="location-time" id="locationTime"></span>
+                    </div>
+                    <div class="location-status" id="locationStatus">
+                        <i class="fas fa-circle"></i>
+                        <span>Status</span>
+                    </div>
+                </div>
+
+                <div class="location-content">
+                    <div class="location-image" id="locationImage">
+                        <!-- Image will be set dynamically -->
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <i class="fas fa-info-circle"></i>
+                            <h3>Description</h3>
+                            <p id="locationDescription">Select a location to view details</p>
+                        </div>
+
+                        <div class="info-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Address</h3>
+                            <p id="locationAddress">-</p>
+                        </div>
+
+                        <div class="info-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>Opening Hours</h3>
+                            <p id="locationHours">-</p>
+                        </div>
+
+                        <div class="info-card">
+                            <i class="fas fa-yen-sign"></i>
+                            <h3>Entry Fee</h3>
+                            <p id="locationPrice">-</p>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="#" class="action-btn" id="mapLink" target="_blank" disabled>
+                            <i class="fas fa-map"></i>
+                            View on Map
+                        </a>
+                        <a href="#" class="action-btn" id="websiteLink" target="_blank" disabled>
+                            <i class="fas fa-globe"></i>
+                            Official Website
+                        </a>
+                    </div>
+
+                    <div class="additional-info">
+                        <h3>Additional Information</h3>
+                        <ul id="additionalDetails">
+                            <!-- Will be populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="app-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="itinerary.html" class="nav-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Itinerary</span>
+            </a>
+            <a href="budget.html" class="nav-item">
+                <i class="fas fa-wallet"></i>
+                <span>Budget</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Location data structure
+        const locationData = {
+            "1": {
+                "nagoya-castle": {
+                    name: "Nagoya Castle",
+                    time: "09:30 - 12:00",
+                    description: "Historic castle complex featuring a museum with artifacts & reconstructed palace interiors.",
+                    address: "1-1 Honmaru, Naka Ward, Nagoya, Aichi 460-0031, Japan",
+                    hours: "9:00 AM - 4:30 PM (Last entry 4:00 PM)",
+                    price: "¥500",
+                    status: "confirmed",
+                    image: "images/nagoya-castle.jpg",
+                    mapLink: "https://goo.gl/maps/1234nagoyacastle",
+                    websiteLink: "https://www.nagoyajo.city.nagoya.jp/en/",
+                    additionalInfo: [
+                        "Closed on Tuesdays (or next day if Tuesday is a holiday)",
+                        "Allow 2-3 hours for the visit",
+                        "English audio guides available",
+                        "Photography allowed (no flash inside)"
+                    ]
+                },
+                "osu-shopping": {
+                    name: "Osu Shopping District",
+                    time: "14:00 - 17:00",
+                    description: "Vibrant shopping district with over 1,200 shops and restaurants.",
+                    address: "Osu, Naka Ward, Nagoya, Aichi 460-0011, Japan",
+                    hours: "Most shops 10:00 AM - 7:00 PM",
+                    price: "Free",
+                    status: "confirmed",
+                    image: "images/osu-kannon.jpg",
+                    mapLink: "https://goo.gl/maps/1234osu",
+                    websiteLink: "https://www.osu-kannon.jp/en/",
+                    additionalInfo: [
+                        "Many shops closed on Wednesdays",
+                        "Street food available",
+                        "Visit Osu Kannon Temple while here",
+                        "Regular street performances on weekends"
+                    ]
+                }
+            },
+            "2": {
+                "toyota-museum": {
+                    name: "Toyota Commemorative Museum",
+                    time: "10:00 - 13:00",
+                    description: "Industrial museum showcasing Toyota's history and automotive technology.",
+                    address: "4-1-35 Noritakeshinmachi, Nishi Ward, Nagoya, Aichi 451-0051, Japan",
+                    hours: "9:30 AM - 5:00 PM (Last entry 4:30 PM)",
+                    price: "¥1000",
+                    status: "confirmed",
+                    image: "images/toyota-museum.jpg",
+                    mapLink: "https://goo.gl/maps/toyotamuseum",
+                    websiteLink: "https://www.tcmit.org/english/",
+                    additionalInfo: [
+                        "Closed on Mondays",
+                        "Guided tours available in English",
+                        "Interactive exhibits and demonstrations",
+                        "Gift shop with exclusive items"
+                    ]
+                },
+                "science-museum": {
+                    name: "Nagoya Science Museum",
+                    time: "14:00 - 17:00",
+                    description: "Modern science museum with planetarium and interactive exhibits.",
+                    address: "2-17-1 Sakae, Naka Ward, Nagoya, Aichi 460-0008, Japan",
+                    hours: "9:30 AM - 5:00 PM",
+                    price: "¥800",
+                    status: "confirmed",
+                    image: "images/science-museum.jpg",
+                    mapLink: "https://goo.gl/maps/sciencemuseum",
+                    websiteLink: "http://www.ncsm.city.nagoya.jp/en/",
+                    additionalInfo: [
+                        "Planetarium shows every hour",
+                        "Tornado demonstration daily",
+                        "Special exhibitions regularly",
+                        "Audio guides available"
+                    ]
+                }
+            }
+        };
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSelectors();
+            setupEventListeners();
+            disableActionButtons();
+        });
+
+        function initializeSelectors() {
+            const daySelect = document.getElementById('daySelect');
+            const locationSelect = document.getElementById('locationSelect');
+
+            daySelect.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('open');
+                locationSelect.classList.remove('open');
+            });
+
+            locationSelect.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const selectedDay = daySelect.querySelector('.selected-option').textContent;
+                const dayNumber = selectedDay ? selectedDay.split(' - ')[0].replace('Day ', '') : null;
+                
+                if (dayNumber && locationData[dayNumber]) {
+                    this.classList.toggle('open');
+                }
+            });
+
+            // Setup option selection for days
+            daySelect.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const value = this.dataset.value;
+                    const text = this.textContent;
+                    daySelect.querySelector('.selected-option').textContent = text;
+                    daySelect.classList.remove('open');
+
+                    resetLocationSelection();
+                    updateLocationOptions(value);
+                    resetLocationDetails();
+                });
+            });
+
+            resetLocationSelection();
+            disableActionButtons();
+        }
+
+        function resetLocationSelection() {
+            const locationSelect = document.getElementById('locationSelect');
+            const selectedOption = locationSelect.querySelector('.selected-option');
+            selectedOption.textContent = '';
+            selectedOption.dataset.placeholder = 'Choose a location...';
+            locationSelect.querySelector('.options-list').innerHTML = '';
+            locationSelect.classList.remove('open');
+            locationSelect.style.opacity = '0.5';
+            locationSelect.style.pointerEvents = 'none';
+        }
+
+        function resetLocationDetails() {
+            document.getElementById('locationName').textContent = 'Select a location';
+            document.getElementById('locationTime').textContent = '';
+            document.getElementById('locationDescription').textContent = 'Select a location to view details';
+            document.getElementById('locationAddress').textContent = '-';
+            document.getElementById('locationHours').textContent = '-';
+            document.getElementById('locationPrice').textContent = '-';
+            document.getElementById('locationStatus').className = 'location-status';
+            document.getElementById('locationStatus').querySelector('span').textContent = 'Status';
+            document.getElementById('locationImage').style.backgroundImage = 'none';
+            document.getElementById('additionalDetails').innerHTML = '';
+            disableActionButtons();
+        }
+
+        function updateLocationOptions(dayNumber) {
+            const locationSelect = document.getElementById('locationSelect');
+            const optionsList = locationSelect.querySelector('.options-list');
+            const selectedOption = locationSelect.querySelector('.selected-option');
+            optionsList.innerHTML = '';
+
+            const locations = locationData[dayNumber];
+            
+            if (locations && Object.keys(locations).length > 0) {
+                selectedOption.textContent = '';
+                selectedOption.dataset.placeholder = 'Choose a location...';
+                locationSelect.style.opacity = '1';
+                locationSelect.style.pointerEvents = 'auto';
+
+                Object.entries(locations).forEach(([key, location]) => {
+                    const option = document.createElement('div');
+                    option.className = 'option';
+                    option.dataset.value = key;
+                    option.textContent = location.name;
+                    option.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        selectedOption.textContent = this.textContent;
+                        locationSelect.classList.remove('open');
+                        updateLocationDetails(key);
+                    });
+                    optionsList.appendChild(option);
+                });
+            } else {
+                selectedOption.textContent = '';
+                selectedOption.dataset.placeholder = 'No locations available for this day';
+                locationSelect.style.opacity = '0.5';
+                locationSelect.style.pointerEvents = 'none';
+            }
+        }
+
+        function disableActionButtons() {
+            const mapLink = document.getElementById('mapLink');
+            const websiteLink = document.getElementById('websiteLink');
+            
+            mapLink.classList.add('disabled');
+            websiteLink.classList.add('disabled');
+            mapLink.href = '#';
+            websiteLink.href = '#';
+        }
+
+        function enableActionButtons(location) {
+            const mapLink = document.getElementById('mapLink');
+            const websiteLink = document.getElementById('websiteLink');
+            
+            mapLink.classList.remove('disabled');
+            websiteLink.classList.remove('disabled');
+            mapLink.href = location.mapLink;
+            websiteLink.href = location.websiteLink;
+        }
+
+        function updateLocationDetails(locationKey) {
+            const selectedDay = document.getElementById('daySelect')
+                .querySelector('.selected-option').textContent.split(' - ')[0].replace('Day ', '');
+            const location = locationData[selectedDay][locationKey];
+
+            if (!location) return;
+
+            // Update location details
+            document.getElementById('locationName').textContent = location.name;
+            document.getElementById('locationTime').textContent = location.time;
+            document.getElementById('locationDescription').textContent = location.description;
+            document.getElementById('locationAddress').textContent = location.address;
+            document.getElementById('locationHours').textContent = location.hours;
+            document.getElementById('locationPrice').textContent = location.price;
+
+            // Update status
+            const statusElement = document.getElementById('locationStatus');
+            statusElement.className = `location-status ${location.status}`;
+            statusElement.querySelector('span').textContent = location.status.charAt(0).toUpperCase() + location.status.slice(1);
+
+            // Update links
+            enableActionButtons(location);
+
+            // Update additional info
+            const additionalList = document.getElementById('additionalDetails');
+            additionalList.innerHTML = location.additionalInfo
+                .map(info => `<li><i class="fas fa-check"></i>${info}</li>`)
+                .join('');
+
+            // Update image
+            document.getElementById('locationImage').style.backgroundImage = `url(${location.image})`;
+        }
+
+        function setupEventListeners() {
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                const selects = document.querySelectorAll('.custom-select');
+                selects.forEach(select => {
+                    if (!select.contains(e.target)) {
+                        select.classList.remove('open');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html> 

@@ -25,111 +25,74 @@
                 </button>
             </div>
             <h1 data-translate="welcome-title">Welcome to Nagoya Family Trip</h1>
-            <p class="subtitle" data-translate="trip-overview">Trip Overview</p>
-            <div class="install-prompt">
-                <button id="installBtn" class="install-btn">
-                    <i class="fas fa-download"></i> Install App
-                </button>
-            </div>
+            <p class="subtitle" data-translate="trip-overview">Your Complete Travel Guide</p>
         </header>
 
-        <div class="qr-section">
-            <h2>Scan to Install App</h2>
-            <div id="qrcode"></div>
-            <p class="qr-instructions">Open with your phone's camera to install the app</p>
-        </div>
-
         <div class="trip-info">
-            <h2 data-translate="trip-overview">Trip Overview</h2>
-            <p data-translate="trip-duration">Duration: 7 Days</p>
-            <p data-translate="trip-dates">Dates: July 15-21, 2024</p>
-            <p data-translate="trip-location">Location: Nagoya, Japan</p>
-            <p data-translate="trip-description">A family-friendly adventure through the heart of Japan</p>
-            <a href="travelers.html" class="info-card">
+            <div class="info-card" onclick="window.location.href='travelers.html'">
                 <i class="fas fa-users"></i>
                 <h3>Travelers</h3>
-                <p>Family of 3 (Two 57-year-olds, One 16-year-old)</p>
-            </a>
-            <a href="duration.html" class="info-card">
+                <p>Family of 3</p>
+            </div>
+            <div class="info-card" onclick="window.location.href='duration.html'">
                 <i class="fas fa-calendar"></i>
                 <h3>Duration</h3>
-                <p>7 Days</p>
-            </a>
-            <a href="budget.html" class="info-card">
+                <p>7 Days (July 15-21, 2024)</p>
+            </div>
+            <div class="info-card" onclick="window.location.href='budget.html'">
                 <i class="fas fa-wallet"></i>
                 <h3>Budget</h3>
-                <p>¥358,750 (Approx. $2,400 USD)</p>
-            </a>
+                <p>¥358,750 (~$2,400 USD)</p>
+            </div>
         </div>
 
-        <div class="quick-actions">
-            <button class="action-btn" onclick="showToday()">
-                <i class="fas fa-calendar-day"></i>
-                Today's Activities
-            </button>
-            <a href="budget.html" class="budget-btn">
-                <i class="fas fa-wallet"></i>
-                View Budget Details
-            </a>
+        <div class="card">
+            <h2><i class="fas fa-map-marker-alt"></i> Daily Itinerary</h2>
+            <div class="itinerary-grid">
+                <a href="day1.html" class="info-card" data-day="1">
+                    <i class="fas fa-castle"></i>
+                    <h3>Day 1</h3>
+                    <p>Nagoya Castle & City Tour</p>
+                </a>
+                <a href="day2.html" class="info-card" data-day="2">
+                    <i class="fas fa-car"></i>
+                    <h3>Day 2</h3>
+                    <p>Toyota Museum</p>
+                </a>
+                <a href="day3.html" class="info-card" data-day="3">
+                    <i class="fas fa-store"></i>
+                    <h3>Day 3</h3>
+                    <p>Noritake Garden</p>
+                </a>
+                <a href="day4.html" class="info-card" data-day="4">
+                    <i class="fas fa-flask"></i>
+                    <h3>Day 4</h3>
+                    <p>Science Museum</p>
+                </a>
+                <a href="day5.html" class="info-card" data-day="5">
+                    <i class="fas fa-torii-gate"></i>
+                    <h3>Day 5</h3>
+                    <p>Atsuta Shrine</p>
+                </a>
+                <a href="day6.html" class="info-card" data-day="6">
+                    <i class="fas fa-tower-observation"></i>
+                    <h3>Day 6</h3>
+                    <p>TV Tower & Shopping</p>
+                </a>
+                <a href="day7.html" class="info-card" data-day="7">
+                    <i class="fas fa-plane-departure"></i>
+                    <h3>Day 7</h3>
+                    <p>Departure</p>
+                </a>
+            </div>
         </div>
 
-        <div class="itinerary-grid">
-            <a href="day1.html" class="day-card" data-day="1">
-                <h2>Day 1</h2>
-                <p>Arrival & Nagoya Highlights</p>
-                <div class="day-preview">
-                    <span class="location">Nagoya Castle</span>
-                    <span class="time">9:30 AM - 12:00 PM</span>
-                </div>
-            </a>
-            <a href="day2.html" class="day-card" data-day="2">
-                <h2>Day 2</h2>
-                <p>Technology & Science</p>
-                <div class="day-preview">
-                    <span class="location">Toyota Museum</span>
-                    <span class="time">9:30 AM - 12:00 PM</span>
-                </div>
-            </a>
-            <a href="day3.html" class="day-card" data-day="3">
-                <h2>Day 3</h2>
-                <p>Theme Park & Shopping</p>
-                <div class="day-preview">
-                    <span class="location">Nagashima Spa Land</span>
-                    <span class="time">9:30 AM - 3:00 PM</span>
-                </div>
-            </a>
-            <a href="day4.html" class="day-card" data-day="4">
-                <h2>Day 4</h2>
-                <p>UNESCO Village</p>
-                <div class="day-preview">
-                    <span class="location">Shirakawa-go</span>
-                    <span class="time">8:00 AM - 5:00 PM</span>
-                </div>
-            </a>
-            <a href="day5.html" class="day-card" data-day="5">
-                <h2>Day 5</h2>
-                <p>Culture & Gardens</p>
-                <div class="day-preview">
-                    <span class="location">Atsuta Shrine</span>
-                    <span class="time">9:30 AM - 11:30 AM</span>
-                </div>
-            </a>
-            <a href="day6.html" class="day-card" data-day="6">
-                <h2>Day 6</h2>
-                <p>Hida Beef & Takayama</p>
-                <div class="day-preview">
-                    <span class="location">Takayama</span>
-                    <span class="time">7:30 AM - 7:00 PM</span>
-                </div>
-            </a>
-            <a href="day7.html" class="day-card" data-day="7">
-                <h2>Day 7</h2>
-                <p>Departure</p>
-                <div class="day-preview">
-                    <span class="location">Yanagibashi Market</span>
-                    <span class="time">9:00 AM - 11:00 AM</span>
-                </div>
-            </a>
+        <div class="card">
+            <h2><i class="fas fa-qrcode"></i> Install App</h2>
+            <div class="qr-section">
+                <div id="qrcode"></div>
+                <p class="qr-instructions">Scan with your phone's camera to install</p>
+            </div>
         </div>
 
         <nav class="app-nav">
@@ -137,21 +100,22 @@
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
-            <a href="budget.html" class="nav-item">
-                <i class="fas fa-wallet"></i>
-                <span>Budget</span>
-            </a>
             <a href="itinerary-editor.html" class="nav-item">
                 <i class="fas fa-edit"></i>
                 <span>Edit</span>
             </a>
-            <a href="saved.html" class="nav-item">
-                <i class="fas fa-bookmark"></i>
-                <span>Saved</span>
+            <a href="budget.html" class="nav-item">
+                <i class="fas fa-wallet"></i>
+                <span>Budget</span>
+            </a>
+            <a href="pricing.html" class="nav-item">
+                <i class="fas fa-yen-sign"></i>
+                <span>Prices</span>
             </a>
         </nav>
     </div>
 
+    <script src="translations.js"></script>
     <script>
         // Register Service Worker
         if ('serviceWorker' in navigator) {
@@ -159,7 +123,6 @@
                 navigator.serviceWorker.register('/nagoya-trip-planner/sw.js')
                     .then(registration => {
                         console.log('ServiceWorker registration successful');
-                        // Request notification permission
                         if ('Notification' in window) {
                             Notification.requestPermission();
                         }
@@ -179,179 +142,18 @@
             document.getElementById('qrcode').innerHTML = qr.createImgTag(6);
         });
 
-        // Install Prompt
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.style.display = 'block';
-        });
-
-        installBtn.addEventListener('click', async () => {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                installBtn.style.display = 'none';
-            }
-        });
-
         // Check if date is within vacation period
-        function isVacationPeriod(date) {
-            const startDate = new Date(2024, 5, 10); // June 10th, 2024
-            const endDate = new Date(2024, 7, 31);   // August 31st, 2024
-            return date >= startDate && date <= endDate;
-        }
-
-        // Show today's activities
-        function showToday() {
-            const today = new Date();
-            
-            if (!isVacationPeriod(today)) {
-                // Create modal for not-in-vacation message
-                const modal = document.createElement('div');
-                modal.className = 'vacation-modal';
-                modal.innerHTML = `
-                    <div class="modal-content">
-                        <h3>Not Vacation Time Yet</h3>
-                        <p>Your Nagoya trip is scheduled for June 10th - August 31st, 2024.</p>
-                        <p>Days until vacation: ${getDaysUntilVacation()}</p>
-                        <button onclick="this.parentElement.parentElement.remove()" class="close-btn">
-                            <i class="fas fa-times"></i> Close
-                        </button>
-                    </div>
-                `;
-                document.body.appendChild(modal);
-                return;
-            }
-
-            // If within vacation period, show today's activities
-            window.location.href = `day${getCurrentDay()}.html`;
-        }
-
-        // Calculate days until vacation
-        function getDaysUntilVacation() {
-            const today = new Date();
-            const startDate = new Date(2024, 5, 10); // June 10th, 2024
-            
-            if (today >= startDate) {
-                return "Vacation has started!";
-            }
-            
-            const diffTime = Math.abs(startDate - today);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            return `${diffDays} days`;
-        }
-
-        // Get current day number of the vacation (1-7)
-        function getCurrentDay() {
-            const today = new Date();
-            const startDate = new Date(2024, 5, 10); // June 10th, 2024
-            const diffTime = Math.abs(today - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            return Math.min(diffDays, 7); // Return day number (capped at 7)
-        }
-
-        function showSaved() {
-            // Show saved places
-            window.location.href = '/saved';
-        }
-
-        // Handle offline status
-        window.addEventListener('online', () => {
-            document.body.classList.remove('offline');
-        });
-
-        window.addEventListener('offline', () => {
-            document.body.classList.add('offline');
-        });
-
-        // Language switcher
-        let isChinese = false;
-        const translations = {
-            title: {
-                en: "Nagoya Trip Planner",
-                zh: "名古屋旅遊規劃"
-            },
-            subtitle: {
-                en: "7-Day Family Adventure in Japan",
-                zh: "日本7天家庭之旅"
-            },
-            // Add more translations as needed
+        const checkVacationPeriod = () => {
+            const now = new Date();
+            const start = new Date('2024-07-15');
+            const end = new Date('2024-07-21');
+            return now >= start && now <= end;
         };
 
-        function toggleLanguage() {
-            isChinese = !isChinese;
-            const langText = document.querySelector('.lang-text');
-            langText.textContent = isChinese ? 'English' : '中文';
-            
-            // Update text content
-            document.querySelector('h1').textContent = translations.title[isChinese ? 'zh' : 'en'];
-            document.querySelector('.subtitle').textContent = translations.subtitle[isChinese ? 'zh' : 'en'];
+        // Update UI based on vacation period
+        if (checkVacationPeriod()) {
+            document.querySelector('.app-header').classList.add('active-trip');
         }
     </script>
-
-    <style>
-        /* Modal Styles */
-        .vacation-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            max-width: 90%;
-            width: 400px;
-            text-align: center;
-        }
-
-        .modal-content h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .modal-content p {
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .modal-content p:last-of-type {
-            font-weight: 500;
-            color: var(--text-color);
-            font-size: 18px;
-            margin: 20px 0;
-        }
-
-        .close-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 0 auto;
-            transition: transform 0.2s;
-        }
-
-        .close-btn:hover {
-            transform: translateY(-2px);
-        }
-    </style>
 </body>
 </html> 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Circle -->
+    <circle cx="256" cy="256" r="256" fill="#3498db"/>
+    
+    <!-- Mount Fuji -->
+    <path d="M96 352L256 96L416 352H96Z" fill="white"/>
+    
+    <!-- Snow Cap -->
+    <path d="M196 232L256 136L316 232L286 352H226L196 232Z" fill="#ECF0F1"/>
+    
+    <!-- Reflection Lake -->
+    <path d="M136 372C136 372 196 392 256 392C316 392 376 372 376 372" stroke="#ECF0F1" stroke-width="8" stroke-linecap="round"/>
+</svg> 

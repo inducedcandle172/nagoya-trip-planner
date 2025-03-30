@@ -7,6 +7,9 @@ const translations = {
         'map': 'Map',
         'website': 'Website',
         'directions': 'Directions',
+        'home': 'Home',
+        'itinerary': 'Itinerary',
+        'budget': 'Budget',
         
         // Hotel Information
         'hotel-name': 'Hotel Name',
@@ -14,6 +17,8 @@ const translations = {
         'phone': 'Phone',
         'check-in': 'Check-in',
         'check-out': 'Check-out',
+        'check-in-time': 'Check-in Time',
+        'check-out-time': 'Check-out Time',
         
         // Activities
         'time': 'Time',
@@ -22,6 +27,13 @@ const translations = {
         'view-map': 'View Map',
         'visit-website': 'Visit Website',
         'get-directions': 'Get Directions',
+        'select-day': 'Select Day',
+        'select-location': 'Select Location',
+        'location-details': 'Location Details',
+        'description': 'Description',
+        'opening-hours': 'Opening Hours',
+        'entry-fee': 'Entry Fee',
+        'additional-info': 'Additional Information',
         
         // Common Activities
         'breakfast': 'Breakfast',
@@ -96,17 +108,18 @@ const translations = {
         'centrair-airport-notes': 'International airport with shopping and dining facilities',
         
         // Day Titles
-        'day1-title': 'Day 1: Arrival',
-        'day2-title': 'Day 2: Cultural Exploration',
-        'day3-title': 'Day 3: Historical Nagoya',
-        'day4-title': 'Day 4: Modern Nagoya',
-        'day5-title': 'Day 5: Industrial & Science',
-        'day6-title': 'Day 6: Shopping & Entertainment',
+        'day1-title': 'Day 1: Arrival & Nagoya Highlights',
+        'day2-title': 'Day 2: Technology & Science',
+        'day3-title': 'Day 3: Theme Park & Shopping',
+        'day4-title': 'Day 4: UNESCO Village',
+        'day5-title': 'Day 5: Culture & Gardens',
+        'day6-title': 'Day 6: Hida Beef & Takayama',
         'day7-title': 'Day 7: Departure',
         
         // Language Selector
         'english': 'English',
         'chinese': '繁體中文',
+        'select-language': 'Select Language',
 
         // Main Page
         'welcome-title': 'Welcome to Nagoya Family Trip',
@@ -149,6 +162,9 @@ const translations = {
         'map': '地圖',
         'website': '網站',
         'directions': '路線',
+        'home': '首頁',
+        'itinerary': '行程',
+        'budget': '預算',
         
         // Hotel Information
         'hotel-name': '酒店名稱',
@@ -156,6 +172,8 @@ const translations = {
         'phone': '電話',
         'check-in': '入住時間',
         'check-out': '退房時間',
+        'check-in-time': '入住時間',
+        'check-out-time': '退房時間',
         
         // Activities
         'time': '時間',
@@ -164,6 +182,13 @@ const translations = {
         'view-map': '查看地圖',
         'visit-website': '訪問網站',
         'get-directions': '獲取路線',
+        'select-day': '選擇日期',
+        'select-location': '選擇地點',
+        'location-details': '地點詳情',
+        'description': '描述',
+        'opening-hours': '開放時間',
+        'entry-fee': '入場費',
+        'additional-info': '附加資訊',
         
         // Common Activities
         'breakfast': '早餐',
@@ -238,17 +263,18 @@ const translations = {
         'centrair-airport-notes': '國際機場，設有購物和餐飲設施',
         
         // Day Titles
-        'day1-title': '第1天：抵達',
-        'day2-title': '第2天：文化探索',
-        'day3-title': '第3天：歷史名古屋',
-        'day4-title': '第4天：現代名古屋',
-        'day5-title': '第5天：工業與科學',
-        'day6-title': '第6天：購物與娛樂',
+        'day1-title': '第1天：抵達與名古屋精華',
+        'day2-title': '第2天：科技與科學',
+        'day3-title': '第3天：主題樂園與購物',
+        'day4-title': '第4天：聯合國教科文組織村',
+        'day5-title': '第5天：文化與花園',
+        'day6-title': '第6天：飛驒牛肉與高山',
         'day7-title': '第7天：出發',
         
         // Language Selector
         'english': 'English',
         'chinese': '繁體中文',
+        'select-language': '選擇語言',
 
         // Main Page
         'welcome-title': '歡迎來到名古屋家庭之旅',
@@ -256,28 +282,28 @@ const translations = {
         'trip-duration': '行程：7天',
         'trip-dates': '日期：2024年7月15-21日',
         'trip-location': '地點：日本名古屋',
-        'trip-description': '一場充滿樂趣的家庭日本之旅',
+        'trip-description': '一場穿越日本心臟地帶的家庭友好冒險',
         'view-itinerary': '查看行程',
         'view-budget': '查看預算',
-        'day': '第',
-        'arrival': '天：抵達',
-        'cultural-exploration': '天：文化探索',
-        'historical-nagoya': '天：歷史名古屋',
-        'modern-nagoya': '天：現代名古屋',
-        'industrial-science': '天：工業與科學',
-        'shopping-entertainment': '天：購物與娛樂',
-        'departure': '天：出發',
+        'day': '天',
+        'arrival': '抵達',
+        'cultural-exploration': '文化探索',
+        'historical-nagoya': '歷史名古屋',
+        'modern-nagoya': '現代名古屋',
+        'industrial-science': '工業與科學',
+        'shopping-entertainment': '購物與娛樂',
+        'departure': '出發',
 
         // Budget Page
         'budget-title': '行程預算',
         'total-budget': '總預算',
         'flight-costs': '機票費用',
         'hotel-costs': '酒店費用',
-        'transportation': '交通費用',
-        'activities': '活動費用',
-        'food': '餐飲費用',
-        'shopping': '購物費用',
-        'other': '其他費用',
+        'transportation': '交通',
+        'activities': '活動',
+        'food': '餐飲',
+        'shopping': '購物',
+        'other': '其他',
         'per-person': '每人',
         'total': '總計',
         'currency': '美元',
@@ -292,45 +318,29 @@ function translatePage(lang) {
             element.textContent = translations[lang][key];
         }
     });
-    
-    // Update active language button
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.getAttribute('data-lang') === lang) {
-            btn.classList.add('active');
-        }
-    });
 }
 
 function addLanguageSelector() {
     const header = document.querySelector('.app-header');
-    if (!header) return; // Skip if no header found
-    
-    // Check if language selector already exists
-    if (document.querySelector('.language-selector')) return;
-    
-    const selector = document.createElement('div');
-    selector.className = 'language-selector';
-    
-    const enBtn = document.createElement('button');
-    enBtn.className = 'lang-btn';
-    enBtn.setAttribute('data-lang', 'en');
-    enBtn.innerHTML = '<i class="fas fa-globe"></i> English';
-    enBtn.onclick = () => translatePage('en');
-    
-    const zhBtn = document.createElement('button');
-    zhBtn.className = 'lang-btn';
-    zhBtn.setAttribute('data-lang', 'zh');
-    zhBtn.innerHTML = '<i class="fas fa-globe"></i> 繁體中文';
-    zhBtn.onclick = () => translatePage('zh');
-    
-    selector.appendChild(enBtn);
-    selector.appendChild(zhBtn);
-    header.appendChild(selector);
+    const languageSelector = document.createElement('div');
+    languageSelector.className = 'language-selector';
+    languageSelector.innerHTML = `
+        <select onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="zh">繁體中文</option>
+        </select>
+    `;
+    header.appendChild(languageSelector);
 }
 
-// Initialize translation when page loads
+function changeLanguage(lang) {
+    translatePage(lang);
+    localStorage.setItem('preferred-language', lang);
+}
+
+// Initialize language based on user preference or default to English
 document.addEventListener('DOMContentLoaded', () => {
+    const preferredLanguage = localStorage.getItem('preferred-language') || 'en';
     addLanguageSelector();
-    translatePage('en'); // Default to English
+    translatePage(preferredLanguage);
 }); 

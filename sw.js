@@ -16,10 +16,7 @@ const urlsToCache = [
     '/duration.html',
     '/budget.html',
     '/itinerary.html',
-    '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png',
-    'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
+    '/icons/icon-192x192.png'
 ];
 
 self.addEventListener('install', event => {

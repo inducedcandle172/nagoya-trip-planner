@@ -208,6 +208,124 @@
                         "Audio guides available"
                     ]
                 }
+            },
+            "3": {
+                "legoland": {
+                    name: "LEGOLAND Japan",
+                    time: "10:00 - 17:00",
+                    description: "Family theme park featuring LEGO-themed attractions and rides.",
+                    address: "2-2-1 Kinjo-futo, Minato Ward, Nagoya, Aichi 455-8605, Japan",
+                    hours: "10:00 AM - 5:00 PM",
+                    price: "¥6,900 (Adult)",
+                    status: "confirmed",
+                    image: "images/legoland.jpg",
+                    mapLink: "https://goo.gl/maps/legoland",
+                    websiteLink: "https://www.legoland.jp/en/",
+                    additionalInfo: [
+                        "Online ticket booking recommended",
+                        "Stroller rental available",
+                        "Family-friendly facilities",
+                        "English maps available"
+                    ]
+                }
+            },
+            "4": {
+                "shirakawa-go": {
+                    name: "Shirakawa-go Village",
+                    time: "09:00 - 16:00",
+                    description: "UNESCO World Heritage site featuring traditional gassho-zukuri farmhouses.",
+                    address: "Ogimachi, Shirakawa, Ono District, Gifu 501-5627, Japan",
+                    hours: "24/7 (Visitor Center 9:00 AM - 5:00 PM)",
+                    price: "¥1,000 (Observation Deck)",
+                    status: "confirmed",
+                    image: "images/shirakawa-go.jpg",
+                    mapLink: "https://goo.gl/maps/shirakawago",
+                    websiteLink: "https://shirakawa-go.org/en/",
+                    additionalInfo: [
+                        "Best views from observation deck",
+                        "Traditional lunch available",
+                        "Guided tours in English",
+                        "Photography spots marked"
+                    ]
+                }
+            },
+            "5": {
+                "atsuta-shrine": {
+                    name: "Atsuta Shrine",
+                    time: "09:00 - 16:30",
+                    description: "Ancient Shinto shrine housing the sacred Kusanagi sword.",
+                    address: "1-1-1 Jingu, Atsuta Ward, Nagoya, Aichi 456-8585, Japan",
+                    hours: "24/7 (Treasure Hall 9:00 AM - 4:30 PM)",
+                    price: "Free (Treasure Hall ¥300)",
+                    status: "confirmed",
+                    image: "images/atsuta-shrine.jpg",
+                    mapLink: "https://goo.gl/maps/atsutashrine",
+                    websiteLink: "https://www.atsutajingu.or.jp/en/",
+                    additionalInfo: [
+                        "Photography restrictions apply",
+                        "Traditional ceremonies daily",
+                        "Garden area available",
+                        "English pamphlets provided"
+                    ]
+                },
+                "nagoya-tv-tower": {
+                    name: "Nagoya TV Tower",
+                    time: "17:00 - 21:00",
+                    description: "Iconic tower with observation deck offering city views.",
+                    address: "3-6-15 Nishiki, Naka Ward, Nagoya, Aichi 460-0003, Japan",
+                    hours: "10:00 AM - 9:00 PM",
+                    price: "¥700",
+                    status: "confirmed",
+                    image: "images/tv-tower.jpg",
+                    mapLink: "https://goo.gl/maps/tvtower",
+                    websiteLink: "https://www.nagoya-tv-tower.co.jp/en/",
+                    additionalInfo: [
+                        "Best views at sunset",
+                        "Night illumination",
+                        "Cafe on observation deck",
+                        "Photo spots available"
+                    ]
+                }
+            },
+            "6": {
+                "takayama": {
+                    name: "Takayama Old Town",
+                    time: "10:00 - 16:00",
+                    description: "Historic district with traditional architecture and sake breweries.",
+                    address: "Kamiichinomachi, Takayama, Gifu 506-0841, Japan",
+                    hours: "Shops 9:00 AM - 5:00 PM",
+                    price: "Free",
+                    status: "confirmed",
+                    image: "images/takayama.jpg",
+                    mapLink: "https://goo.gl/maps/takayama",
+                    websiteLink: "https://www.hida.jp/english/",
+                    additionalInfo: [
+                        "Sake tasting available",
+                        "Traditional crafts shops",
+                        "Local food specialties",
+                        "Walking map provided"
+                    ]
+                }
+            },
+            "7": {
+                "departure": {
+                    name: "Departure Day",
+                    time: "Check-out - 12:00",
+                    description: "Check-out from hotel and transfer to airport.",
+                    address: "Nagoya Central International Airport",
+                    hours: "Check-out by 11:00 AM",
+                    price: "N/A",
+                    status: "confirmed",
+                    image: "images/airport.jpg",
+                    mapLink: "https://goo.gl/maps/centrair",
+                    websiteLink: "https://www.centrair.jp/en/",
+                    additionalInfo: [
+                        "Hotel check-out by 11:00 AM",
+                        "Airport transfer arranged",
+                        "Allow 2 hours for check-in",
+                        "Duty-free shopping available"
+                    ]
+                }
             }
         };
 
@@ -235,6 +353,7 @@
                 
                 if (dayNumber && locationData[dayNumber]) {
                     this.classList.toggle('open');
+                    updateLocationOptions(dayNumber);
                 }
             });
 
@@ -249,12 +368,14 @@
 
                     resetLocationSelection();
                     updateLocationOptions(value);
-                    resetLocationDetails();
                 });
             });
 
-            resetLocationSelection();
-            disableActionButtons();
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', () => {
+                daySelect.classList.remove('open');
+                locationSelect.classList.remove('open');
+            });
         }
 
         function resetLocationSelection() {
@@ -285,35 +406,24 @@
         function updateLocationOptions(dayNumber) {
             const locationSelect = document.getElementById('locationSelect');
             const optionsList = locationSelect.querySelector('.options-list');
-            const selectedOption = locationSelect.querySelector('.selected-option');
             optionsList.innerHTML = '';
 
-            const locations = locationData[dayNumber];
-            
-            if (locations && Object.keys(locations).length > 0) {
-                selectedOption.textContent = '';
-                selectedOption.dataset.placeholder = 'Choose a location...';
-                locationSelect.style.opacity = '1';
-                locationSelect.style.pointerEvents = 'auto';
-
-                Object.entries(locations).forEach(([key, location]) => {
+            if (locationData[dayNumber]) {
+                Object.entries(locationData[dayNumber]).forEach(([key, location]) => {
                     const option = document.createElement('div');
                     option.className = 'option';
                     option.dataset.value = key;
                     option.textContent = location.name;
                     option.addEventListener('click', function(e) {
                         e.stopPropagation();
-                        selectedOption.textContent = this.textContent;
+                        const value = this.dataset.value;
+                        const text = this.textContent;
+                        locationSelect.querySelector('.selected-option').textContent = text;
                         locationSelect.classList.remove('open');
-                        updateLocationDetails(key);
+                        updateLocationDetails(dayNumber, value);
                     });
                     optionsList.appendChild(option);
                 });
-            } else {
-                selectedOption.textContent = '';
-                selectedOption.dataset.placeholder = 'No locations available for this day';
-                locationSelect.style.opacity = '0.5';
-                locationSelect.style.pointerEvents = 'none';
             }
         }
 
@@ -337,7 +447,7 @@
             websiteLink.href = location.websiteLink;
         }
 
-        function updateLocationDetails(locationKey) {
+        function updateLocationDetails(dayNumber, locationKey) {
             const selectedDay = document.getElementById('daySelect')
                 .querySelector('.selected-option').textContent.split(' - ')[0].replace('Day ', '');
             const location = locationData[selectedDay][locationKey];

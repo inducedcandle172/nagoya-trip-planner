@@ -24,6 +24,12 @@ const urlsToCache = [
     '/icons/icon-192x192.png',
     '/icons/icon-384x384.png',
     '/icons/icon-512x512.png',
+    // iPad Splash Screens
+    '/icons/splash-1536x2048.png',
+    '/icons/splash-1668x2388.png',
+    '/icons/splash-1668x2224.png',
+    '/icons/splash-1620x2160.png',
+    // iPhone Splash Screens
     '/icons/splash-1290x2796.png',
     '/icons/splash-1179x2556.png',
     '/icons/splash-1284x2778.png',

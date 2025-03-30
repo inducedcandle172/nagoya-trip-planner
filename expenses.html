@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Expenses - Nagoya Trip Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nagoya Trip">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Trip Expenses</h1>
+            <p class="subtitle">Track and manage your budget</p>
+        </header>
+
+        <div class="expenses-summary">
+            <div class="summary-card">
+                <h3>Total Budget</h3>
+                <p class="amount">¥358,750</p>
+            </div>
+            <div class="summary-card">
+                <h3>Spent</h3>
+                <p class="amount" id="totalSpent">¥0</p>
+            </div>
+            <div class="summary-card">
+                <h3>Remaining</h3>
+                <p class="amount" id="remainingBudget">¥358,750</p>
+            </div>
+        </div>
+
+        <div class="expense-form">
+            <h2>Add New Expense</h2>
+            <form id="expenseForm">
+                <div class="form-group">
+                    <label for="expenseName">Expense Name</label>
+                    <input type="text" id="expenseName" required>
+                </div>
+                <div class="form-group">
+                    <label for="expenseAmount">Amount (¥)</label>
+                    <input type="number" id="expenseAmount" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="expenseCategory">Category</label>
+                    <select id="expenseCategory" required>
+                        <option value="transportation">Transportation</option>
+                        <option value="food">Food & Dining</option>
+                        <option value="attractions">Attractions</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="accommodation">Accommodation</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="expenseDate">Date</label>
+                    <input type="date" id="expenseDate" required>
+                </div>
+                <button type="submit" class="submit-btn">Add Expense</button>
+            </form>
+        </div>
+
+        <div class="expenses-list">
+            <h2>Expense History</h2>
+            <div class="expense-filters">
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="transportation">Transportation</option>
+                    <option value="food">Food & Dining</option>
+                    <option value="attractions">Attractions</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="accommodation">Accommodation</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="month" id="monthFilter">
+            </div>
+            <div id="expensesList"></div>
+        </div>
+
+        <nav class="app-nav">
+            <a href="/" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/today" class="nav-item">
+                <i class="fas fa-calendar-day"></i>
+                <span>Today</span>
+            </a>
+            <a href="/expenses.html" class="nav-item active">
+                <i class="fas fa-wallet"></i>
+                <span>Expenses</span>
+            </a>
+            <a href="/settings" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Initialize expenses from localStorage or empty array
+        let expenses = JSON.parse(localStorage.getItem('tripExpenses')) || [];
+        
+        // Update summary
+        function updateSummary() {
+            const totalSpent = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+            const remaining = 358750 - totalSpent;
+            
+            document.getElementById('totalSpent').textContent = `¥${totalSpent.toLocaleString()}`;
+            document.getElementById('remainingBudget').textContent = `¥${remaining.toLocaleString()}`;
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return `¥${amount.toLocaleString()}`;
+        }
+
+        // Render expenses list
+        function renderExpenses(filteredExpenses = expenses) {
+            const expensesList = document.getElementById('expensesList');
+            expensesList.innerHTML = '';
+
+            filteredExpenses.forEach((expense, index) => {
+                const expenseElement = document.createElement('div');
+                expenseElement.className = 'expense-item';
+                expenseElement.innerHTML = `
+                    <div class="expense-info">
+                        <h3>${expense.name}</h3>
+                        <p class="expense-category">${expense.category}</p>
+                        <p class="expense-date">${formatDate(expense.date)}</p>
+                    </div>
+                    <div class="expense-amount">
+                        <p>${formatCurrency(expense.amount)}</p>
+                        <button class="delete-btn" data-index="${index}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                expensesList.appendChild(expenseElement);
+            });
+
+            // Add delete event listeners
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = parseInt(e.currentTarget.dataset.index);
+                    expenses.splice(index, 1);
+                    localStorage.setItem('tripExpenses', JSON.stringify(expenses));
+                    renderExpenses();
+                    updateSummary();
+                });
+            });
+        }
+
+        // Handle form submission
+        document.getElementById('expenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const newExpense = {
+                name: document.getElementById('expenseName').value,
+                amount: parseInt(document.getElementById('expenseAmount').value),
+                category: document.getElementById('expenseCategory').value,
+                date: document.getElementById('expenseDate').value
+            };
+
+            expenses.push(newExpense);
+            localStorage.setItem('tripExpenses', JSON.stringify(expenses));
+            
+            renderExpenses();
+            updateSummary();
+            e.target.reset();
+        });
+
+        // Handle filters
+        document.getElementById('categoryFilter').addEventListener('change', filterExpenses);
+        document.getElementById('monthFilter').addEventListener('change', filterExpenses);
+
+        function filterExpenses() {
+            const category = document.getElementById('categoryFilter').value;
+            const month = document.getElementById('monthFilter').value;
+            
+            let filtered = expenses;
+            
+            if (category !== 'all') {
+                filtered = filtered.filter(expense => expense.category === category);
+            }
+            
+            if (month) {
+                filtered = filtered.filter(expense => expense.date.startsWith(month));
+            }
+            
+            renderExpenses(filtered);
+        }
+
+        // Initial render
+        renderExpenses();
+        updateSummary();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Budget - Nagoya Family Trip</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nagoya Trip">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <a href="index.html" class="back-button" data-translate="back-to-main">
+                <i class="fas fa-arrow-left"></i> Back to Main Page
+            </a>
+            <h1 data-translate="budget-title">Trip Budget</h1>
+            <p class="subtitle">Detailed expense breakdown</p>
+        </header>
+
+        <div class="budget-summary">
+            <div class="summary-card">
+                <h3 data-translate="flight-costs">Flight Costs</h3>
+                <p><span data-translate="per-person">Per Person:</span> $800</p>
+                <p><span data-translate="total">Total:</span> $3,200</p>
+            </div>
+            <div class="summary-card">
+                <h3 data-translate="hotel-costs">Hotel Costs</h3>
+                <p><span data-translate="per-person">Per Person:</span> $200</p>
+                <p><span data-translate="total">Total:</span> $800</p>
+            </div>
+            <div class="summary-card">
+                <h3 data-translate="transportation">Transportation</h3>
+                <p><span data-translate="per-person">Per Person:</span> $150</p>
+                <p><span data-translate="total">Total:</span> $600</p>
+            </div>
+            <div class="summary-card">
+                <h3 data-translate="activities">Activities</h3>
+                <p><span data-translate="per-person">Per Person:</span> $100</p>
+                <p><span data-translate="total">Total:</span> $400</p>
+            </div>
+            <div class="summary-card">
+                <h3 data-translate="food">Food</h3>
+                <p><span data-translate="per-person">Per Person:</span> $150</p>
+                <p><span data-translate="total">Total:</span> $600</p>
+            </div>
+            <div class="summary-card">
+                <h3 data-translate="shopping">Shopping</h3>
+                <p><span data-translate="per-person">Per Person:</span> $200</p>
+                <p><span data-translate="total">Total:</span> $800</p>
+            </div>
+            <div class="summary-card">
+                <h3 data-translate="other">Other</h3>
+                <p><span data-translate="per-person">Per Person:</span> $100</p>
+                <p><span data-translate="total">Total:</span> $400</p>
+            </div>
+            <div class="budget-total">
+                <h3 data-translate="total-budget">Total Budget</h3>
+                <p><span data-translate="per-person">Per Person:</span> $1,700</p>
+                <p><span data-translate="total">Total:</span> $6,800</p>
+            </div>
+        </div>
+
+        <div class="budget-breakdown">
+            <h2>Expense Breakdown</h2>
+            <div class="category-totals">
+                <div class="category-card">
+                    <h3>Attractions</h3>
+                    <p class="amount" id="attractionsTotal">¥0</p>
+                </div>
+                <div class="category-card">
+                    <h3>Transportation</h3>
+                    <p class="amount" id="transportationTotal">¥0</p>
+                </div>
+                <div class="category-card">
+                    <h3>Food & Dining</h3>
+                    <p class="amount" id="foodTotal">¥0</p>
+                </div>
+                <div class="category-card">
+                    <h3>Shopping</h3>
+                    <p class="amount" id="shoppingTotal">¥0</p>
+                </div>
+                <div class="category-card">
+                    <h3>Accommodation</h3>
+                    <p class="amount" id="accommodationTotal">¥0</p>
+                </div>
+                <div class="category-card">
+                    <h3>Other</h3>
+                    <p class="amount" id="otherTotal">¥0</p>
+                </div>
+            </div>
+
+            <div class="expense-form">
+                <h2>Add New Expense</h2>
+                <form id="expenseForm">
+                    <div class="form-group">
+                        <label for="expenseName">Expense Name</label>
+                        <input type="text" id="expenseName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount (¥)</label>
+                        <input type="number" id="expenseAmount" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory" required>
+                            <option value="attractions">Attractions</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="food">Food & Dining</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="accommodation">Accommodation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Expense</button>
+                </form>
+            </div>
+
+            <div class="expenses-table">
+                <h2>Expense History</h2>
+                <div class="table-filters">
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="attractions">Attractions</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="food">Food & Dining</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="accommodation">Accommodation</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="month" id="monthFilter">
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expensesTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <nav class="app-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="budget.html" class="nav-item active">
+                <i class="fas fa-wallet"></i>
+                <span>Budget</span>
+            </a>
+            <a href="itinerary-editor.html" class="nav-item">
+                <i class="fas fa-edit"></i>
+                <span>Edit</span>
+            </a>
+            <a href="saved.html" class="nav-item">
+                <i class="fas fa-bookmark"></i>
+                <span>Saved</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Add preset expenses with actual attraction names and transportation details
+        const presetExpenses = [
+            {
+                date: '2024-03-20',
+                category: 'Transportation',
+                description: 'Flight Tickets (Roundtrip to Nagoya Chubu Centrair International Airport)',
+                amount: 150000
+            },
+            {
+                date: '2024-03-20',
+                category: 'Accommodation',
+                description: 'Richmond Hotel Nagoya Nayabashi (7 nights)',
+                amount: 100000
+            },
+            {
+                date: '2024-03-21',
+                category: 'Transportation',
+                description: 'Nagoya City Transportation Pass (7 days)',
+                amount: 4000
+            },
+            {
+                date: '2024-03-21',
+                category: 'Attractions',
+                description: 'Nagoya Castle Entry Fee',
+                amount: 500
+            },
+            {
+                date: '2024-03-22',
+                category: 'Attractions',
+                description: 'Toyota Commemorative Museum of Industry and Technology',
+                amount: 1000
+            },
+            {
+                date: '2024-03-23',
+                category: 'Attractions',
+                description: 'Nagashima Spa Land All-Day Pass',
+                amount: 5000
+            },
+            {
+                date: '2024-03-24',
+                category: 'Transportation',
+                description: 'Shirakawa-go Bus Tour Package',
+                amount: 8000
+            },
+            {
+                date: '2024-03-25',
+                category: 'Attractions',
+                description: 'Atsuta Shrine Gardens',
+                amount: 300
+            },
+            {
+                date: '2024-03-26',
+                category: 'Transportation',
+                description: 'JR Limited Express (Wide View) Hida to Takayama',
+                amount: 5000
+            },
+            {
+                date: '2024-03-26',
+                category: 'Food',
+                description: 'Hida Beef Lunch Set at Maruaki',
+                amount: 3500
+            },
+            {
+                date: '2024-03-27',
+                category: 'Shopping',
+                description: 'Yanagibashi Central Market',
+                amount: 5000
+            }
+        ];
+
+        // Initialize expenses with preset values
+        let expenses = JSON.parse(localStorage.getItem('expenses')) || presetExpenses;
+        
+        // Update summary and category totals
+        function updateTotals() {
+            const totalSpent = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+            const remaining = 358750 - totalSpent;
+            
+            document.getElementById('totalSpent').textContent = `¥${totalSpent.toLocaleString()}`;
+            document.getElementById('remainingBudget').textContent = `¥${remaining.toLocaleString()}`;
+
+            // Update category totals
+            const categoryTotals = {
+                attractions: 0,
+                transportation: 0,
+                food: 0,
+                shopping: 0,
+                accommodation: 0,
+                other: 0
+            };
+
+            expenses.forEach(expense => {
+                categoryTotals[expense.category] += expense.amount;
+            });
+
+            Object.keys(categoryTotals).forEach(category => {
+                document.getElementById(`${category}Total`).textContent = 
+                    `¥${categoryTotals[category].toLocaleString()}`;
+            });
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return `¥${amount.toLocaleString()}`;
+        }
+
+        // Render expenses table
+        function renderExpensesTable(filteredExpenses = expenses) {
+            const tbody = document.getElementById('expensesTableBody');
+            tbody.innerHTML = '';
+
+            filteredExpenses.forEach((expense, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${formatDate(expense.date)}</td>
+                    <td>${expense.description}</td>
+                    <td>${expense.category}</td>
+                    <td>${formatCurrency(expense.amount)}</td>
+                    <td>
+                        <button class="delete-btn" data-index="${index}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Add delete event listeners
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = parseInt(e.currentTarget.dataset.index);
+                    expenses.splice(index, 1);
+                    localStorage.setItem('tripExpenses', JSON.stringify(expenses));
+                    renderExpensesTable();
+                    updateTotals();
+                });
+            });
+        }
+
+        // Handle form submission
+        document.getElementById('expenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const newExpense = {
+                name: document.getElementById('expenseName').value,
+                amount: parseInt(document.getElementById('expenseAmount').value),
+                category: document.getElementById('expenseCategory').value,
+                date: document.getElementById('expenseDate').value
+            };
+
+            expenses.push(newExpense);
+            localStorage.setItem('tripExpenses', JSON.stringify(expenses));
+            
+            renderExpensesTable();
+            updateTotals();
+            e.target.reset();
+        });
+
+        // Handle filters
+        document.getElementById('categoryFilter').addEventListener('change', filterExpenses);
+        document.getElementById('monthFilter').addEventListener('change', filterExpenses);
+
+        function filterExpenses() {
+            const category = document.getElementById('categoryFilter').value;
+            const month = document.getElementById('monthFilter').value;
+            
+            let filtered = expenses;
+            
+            if (category !== 'all') {
+                filtered = filtered.filter(expense => expense.category === category);
+            }
+            
+            if (month) {
+                filtered = filtered.filter(expense => expense.date.startsWith(month));
+            }
+            
+            renderExpensesTable(filtered);
+        }
+
+        // Initial render
+        renderExpensesTable();
+        updateTotals();
+    </script>
+</body>
+</html> 

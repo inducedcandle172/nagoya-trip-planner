@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7 - Nagoya Family Trip</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-header">
+        <a href="index.html" class="back-button" data-translate="back-to-itinerary">
+            <i class="fas fa-arrow-left"></i> Back to Itinerary
+        </a>
+        <h1 data-translate="day7-title">Day 7: Departure</h1>
+    </div>
+
+    <div class="container">
+        <div class="info-section">
+            <h2><i class="fas fa-hotel"></i> <span data-translate="hotel-info">Hotel Information</span></h2>
+            <div class="hotel-info">
+                <p><strong data-translate="hotel-name">Hotel Name:</strong> Richmond Hotel Nagoya Nayabashi</p>
+                <p><strong data-translate="address">Address:</strong> 1-2-7 Meieki, Nakamura-ku, Nagoya, Aichi 450-0002</p>
+                <p><strong data-translate="phone">Phone:</strong> +81 52-571-1111</p>
+                <p><strong data-translate="check-in">Check-in:</strong> 15:00</p>
+                <p><strong data-translate="check-out">Check-out:</strong> 11:00</p>
+            </div>
+        </div>
+
+        <div class="activities-section">
+            <h2><i class="fas fa-calendar-day"></i> <span data-translate="daily-activities">Daily Activities</span></h2>
+            <div class="activity-item" data-activity="breakfast">
+                <div class="activity-time" data-translate="time">Time: 08:00</div>
+                <div class="activity-title" data-translate="breakfast">Breakfast at Hotel</div>
+                <div class="activity-image">
+                    <img src="images/richmond-hotel.jpg" alt="Richmond Hotel Nagoya Nayabashi" loading="lazy">
+                </div>
+                <div class="activity-location" data-translate="richmond-hotel-address">Location: 2-35-14 Meieki, Nakamura-ku, Nagoya, Aichi 450-0002</div>
+                <div class="activity-notes" data-translate="richmond-hotel-notes">Notes: Modern hotel with buffet breakfast, located near Nagoya Station</div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.8280305550287!2d136.88431531525815!3d35.171899979999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376c1fd9a0fd1%3A0x696f2e8a3c1b3b3b!2sRichmond%20Hotel%20Nagoya%20Nayabashi!5e0!3m2!1sen!2sjp!4v1625760000000!5m2!1sen!2sjp" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="activity-links">
+                    <a href="https://richmondhotel.jp/nagoya-nayabashi/" target="_blank" class="btn" data-translate="visit-website">Visit Website</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Richmond+Hotel+Nagoya+Nayabashi" target="_blank" class="btn" data-translate="get-directions">Get Directions</a>
+                </div>
+            </div>
+
+            <div class="activity-item" data-activity="nagoya-castle">
+                <div class="activity-time" data-translate="time">Time: 10:00</div>
+                <div class="activity-title">Visit Nagoya Castle</div>
+                <div class="activity-image">
+                    <img src="images/nagoya-castle.jpg" alt="Nagoya Castle" loading="lazy">
+                </div>
+                <div class="activity-location" data-translate="nagoya-castle-address">Location: 1-1 Honmaru, Naka-ku, Nagoya, Aichi 460-0031</div>
+                <div class="activity-notes" data-translate="nagoya-castle-notes">Notes: Historic castle with beautiful gardens and museum</div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.8280305550287!2d136.88431531525815!3d35.171899979999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376c1fd9a0fd1%3A0x696f2e8a3c1b3b3b!2sNagoya+Castle!5e0!3m2!1sen!2sjp!4v1625760000000!5m2!1sen!2sjp" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="activity-links">
+                    <a href="https://www.nagoyajo.city.nagoya.jp/" target="_blank" class="btn" data-translate="visit-website">Visit Website</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Nagoya+Castle" target="_blank" class="btn" data-translate="get-directions">Get Directions</a>
+                </div>
+            </div>
+
+            <div class="activity-item" data-activity="miso-katsu">
+                <div class="activity-time" data-translate="time">Time: 12:30</div>
+                <div class="activity-title" data-translate="lunch">Lunch at Yabaton</div>
+                <div class="activity-image">
+                    <img src="images/miso-katsu.jpg" alt="Yabaton's Miso Katsu" loading="lazy">
+                </div>
+                <div class="activity-location" data-translate="yabaton-address">Location: 3-6-18 Nishiki, Naka-ku, Nagoya, Aichi 460-0003</div>
+                <div class="activity-notes" data-translate="yabaton-notes">Notes: Famous for Nagoya-style miso katsu, a local specialty</div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.8280305550287!2d136.88431531525815!3d35.171899979999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376c1fd9a0fd1%3A0x696f2e8a3c1b3b3b!2sYabaton!5e0!3m2!1sen!2sjp!4v1625760000000!5m2!1sen!2sjp" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="activity-links">
+                    <a href="https://www.yabaton.com/" target="_blank" class="btn" data-translate="visit-website">Visit Website</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Yabaton" target="_blank" class="btn" data-translate="get-directions">Get Directions</a>
+                </div>
+            </div>
+
+            <div class="activity-item" data-activity="airport">
+                <div class="activity-time" data-translate="time">Time: 14:30</div>
+                <div class="activity-title" data-translate="centrair-airport">Departure from Chubu Centrair International Airport</div>
+                <div class="activity-image">
+                    <img src="images/centrair-airport.jpg" alt="Chubu Centrair International Airport" loading="lazy">
+                </div>
+                <div class="activity-location" data-translate="centrair-airport-address">Location: 1-1 Centrair, Tokoname, Aichi 479-0881</div>
+                <div class="activity-notes" data-translate="centrair-airport-notes">Notes: International airport with shopping and dining facilities</div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.8280305550287!2d136.88431531525815!3d35.171899979999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376c1fd9a0fd1%3A0x696f2e8a3c1b3b3b!2sChubu+Centrair+International+Airport!5e0!3m2!1sen!2sjp!4v1625760000000!5m2!1sen!2sjp" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="activity-links">
+                    <a href="https://www.centrair.jp/" target="_blank" class="btn" data-translate="visit-website">Visit Website</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Chubu+Centrair+International+Airport" target="_blank" class="btn" data-translate="get-directions">Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+</body>
+</html> 

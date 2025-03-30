@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Duration - Nagoya Trip Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nagoya Trip">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="app-container">
+        <button class="back-button" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i>
+            Back to Itinerary
+        </button>
+
+        <header class="app-header">
+            <h1>Trip Duration</h1>
+            <p class="subtitle">7-Day Family Adventure</p>
+        </header>
+
+        <div class="duration-timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <span class="day">Day 1</span>
+                    <span class="date">Arrival</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>Arrival & Nagoya Highlights</h3>
+                    <p>Arrive in Nagoya and explore the historic Nagoya Castle</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <span class="day">Day 2</span>
+                    <span class="date">Technology</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>Technology & Science</h3>
+                    <p>Visit Toyota Museum and explore Nagoya's technological heritage</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <span class="day">Day 3</span>
+                    <span class="date">Fun</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>Theme Park & Shopping</h3>
+                    <p>Enjoy Nagashima Spa Land and local shopping</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <span class="day">Day 4</span>
+                    <span class="date">Culture</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>UNESCO Village</h3>
+                    <p>Day trip to Shirakawa-go UNESCO World Heritage site</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <span class="day">Day 5</span>
+                    <span class="date">Heritage</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>Culture & Gardens</h3>
+                    <p>Visit Atsuta Shrine and explore traditional gardens</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <span class="day">Day 6</span>
+                    <span class="date">Food</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>Hida Beef & Takayama</h3>
+                    <p>Day trip to Takayama for famous Hida beef and historic streets</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <span class="day">Day 7</span>
+                    <span class="date">Departure</span>
+                </div>
+                <div class="timeline-content">
+                    <h3>Departure</h3>
+                    <p>Final shopping at Yanagibashi Market and departure</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="trip-summary">
+            <h2>Trip Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Duration</h3>
+                    <p>7 Days</p>
+                </div>
+                <div class="summary-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Total Hours</h3>
+                    <p>168 Hours</p>
+                </div>
+                <div class="summary-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Locations</h3>
+                    <p>4 Cities</p>
+                </div>
+                <div class="summary-item">
+                    <i class="fas fa-route"></i>
+                    <h3>Activities</h3>
+                    <p>15+ Activities</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html> 

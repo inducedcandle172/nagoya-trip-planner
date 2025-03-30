@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Edit Itinerary - Nagoya Trip Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nagoya Trip">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="app-container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Itinerary
+        </a>
+        
+        <header class="app-header">
+            <h1>Edit Itinerary</h1>
+            <p class="subtitle">Customize your trip plans</p>
+        </header>
+
+        <div class="editor-section">
+            <div class="ai-assistant">
+                <h2>AI Assistant</h2>
+                <p class="assistant-description">Tell me what changes you'd like to make to your itinerary</p>
+                <div class="input-group">
+                    <textarea id="aiPrompt" placeholder="Example: Replace visiting the school on day 7 with a waterpark"></textarea>
+                    <button id="generateBtn" class="submit-btn">
+                        <i class="fas fa-magic"></i> Generate Changes
+                    </button>
+                </div>
+                <div id="aiResponse" class="ai-response"></div>
+            </div>
+
+            <div class="manual-editor">
+                <h2>Manual Editor</h2>
+                <div class="editor-controls">
+                    <div class="day-selector">
+                        <label for="daySelect">Select Day:</label>
+                        <select id="daySelect" onchange="loadDayContent()">
+                            <option value="1">Day 1 - Arrival & Nagoya Highlights</option>
+                            <option value="2">Day 2 - Technology & Science</option>
+                            <option value="3">Day 3 - Theme Park & Shopping</option>
+                            <option value="4">Day 4 - UNESCO Village</option>
+                            <option value="5">Day 5 - Culture & Gardens</option>
+                            <option value="6">Day 6 - Hida Beef & Takayama</option>
+                            <option value="7">Day 7 - Departure</option>
+                        </select>
+                    </div>
+                    <div class="activity-selector">
+                        <label for="activitySelect">Select Activity:</label>
+                        <select id="activitySelect" onchange="loadActivityDetails()">
+                            <option value="">Choose an activity...</option>
+                            <option value="nagoya-castle">Nagoya Castle</option>
+                            <option value="toyota-museum">Toyota Museum</option>
+                            <option value="nagashima-spa">Nagashima Spa Land</option>
+                            <option value="shirakawa-go">Shirakawa-go</option>
+                            <option value="atsuta-shrine">Atsuta Shrine</option>
+                            <option value="takayama">Takayama</option>
+                            <option value="yanagibashi">Yanagibashi Market</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="day-editor-card">
+                    <div class="day-title">
+                <div id="dayEditor"></div>
+            </div>
+        </div>
+
+        <nav class="app-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="budget.html" class="nav-item">
+                <i class="fas fa-wallet"></i>
+                <span>Budget</span>
+            </a>
+            <a href="itinerary-editor.html" class="nav-item active">
+                <i class="fas fa-edit"></i>
+                <span>Edit</span>
+            </a>
+            <a href="saved.html" class="nav-item">
+                <i class="fas fa-bookmark"></i>
+                <span>Saved</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Define the full itinerary structure with activities and their details
+        const itineraryData = {
+            1: {
+                title: 'Arrival & Nagoya Highlights',
+                activities: {
+                    'nagoya-castle': {
+                        name: 'Nagoya Castle',
+                        time: '09:30',
+                        description: 'Visit the historic Nagoya Castle, a symbol of the city.',
+                        location: 'Nagoya Castle',
+                        mapLink: 'https://goo.gl/maps/1234nagoyacastle',
+                        websiteLink: 'https://www.nagoyajo.city.nagoya.jp/en/',
+                        price: '¥500'
+                    },
+                    'osu-shopping': {
+                        name: 'Osu Shopping District',
+                        time: '14:00',
+                        description: 'Explore the vibrant Osu Shopping District.',
+                        location: 'Osu Kannon',
+                        mapLink: 'https://goo.gl/maps/1234osu',
+                        websiteLink: 'https://www.osu-kannon.jp/en/',
+                        price: 'Free'
+                    }
+                }
+            },
+            2: {
+                title: 'Technology & Science',
+                activities: {
+                    'toyota-museum': {
+                        name: 'Toyota Museum',
+                        time: '09:30',
+                        description: 'Explore the Toyota Commemorative Museum of Industry and Technology.',
+                        location: 'Toyota Commemorative Museum',
+                        mapLink: 'https://goo.gl/maps/1234toyota',
+                        websiteLink: 'https://www.tcmit.org/english/',
+                        price: '¥1000'
+                    },
+                    'science-museum': {
+                        name: 'Nagoya Science Museum',
+                        time: '14:00',
+                        description: 'Visit the Nagoya City Science Museum with its planetarium.',
+                        location: 'Nagoya Science Museum',
+                        mapLink: 'https://goo.gl/maps/1234science',
+                        websiteLink: 'http://www.ncsm.city.nagoya.jp/en/',
+                        price: '¥800'
+                    }
+                }
+            },
+            3: {
+                title: 'Theme Park & Shopping',
+                activities: {
+                    'nagashima-spa': {
+                        name: 'Nagashima Spa Land',
+                        time: '09:00',
+                        description: 'Enjoy rides and attractions at Nagashima Spa Land.',
+                        location: 'Nagashima Spa Land',
+                        mapLink: 'https://goo.gl/maps/1234nagashima',
+                        websiteLink: 'https://www.nagashima-onsen.co.jp/spaland/index.html/',
+                        price: '¥5000'
+                    },
+                    'jazz-dream': {
+                        name: 'Jazz Dream Nagashima',
+                        time: '16:00',
+                        description: 'Shopping at Jazz Dream Nagashima Outlet.',
+                        location: 'Jazz Dream Outlet',
+                        mapLink: 'https://goo.gl/maps/1234jazzdream',
+                        websiteLink: 'https://www.jazzdream.co.jp/en/',
+                        price: 'Free'
+                    }
+                }
+            },
+            4: {
+                title: 'UNESCO Village',
+                activities: {
+                    'shirakawa-go': {
+                        name: 'Shirakawa-go',
+                        time: '08:00',
+                        description: 'Day trip to the UNESCO World Heritage site of Shirakawa-go.',
+                        location: 'Shirakawa-go',
+                        mapLink: 'https://goo.gl/maps/1234shirakawa',
+                        websiteLink: 'https://www.shirakawa-go.org/en/',
+                        price: '¥8000'
+                    }
+                }
+            },
+            5: {
+                title: 'Culture & Gardens',
+                activities: {
+                    'atsuta-shrine': {
+                        name: 'Atsuta Shrine',
+                        time: '09:30',
+                        description: 'Visit the historic Atsuta Shrine and its gardens.',
+                        location: 'Atsuta Shrine',
+                        mapLink: 'https://goo.gl/maps/1234atsuta',
+                        websiteLink: 'https://www.atsutajingu.or.jp/en/',
+                        price: '¥300'
+                    },
+                    'gardens': {
+                        name: 'Shirotori Garden',
+                        time: '14:00',
+                        description: 'Explore the beautiful Shirotori Garden.',
+                        location: 'Shirotori Garden',
+                        mapLink: 'https://goo.gl/maps/1234shirotori',
+                        websiteLink: 'https://www.shirotori-garden.jp/en/',
+                        price: '¥300'
+                    }
+                }
+            },
+            6: {
+                title: 'Hida Beef & Takayama',
+                activities: {
+                    'takayama': {
+                        name: 'Takayama Old Town',
+                        time: '09:30',
+                        description: 'Explore Takayama\'s historic streets.',
+                        location: 'Takayama Old Town',
+                        mapLink: 'https://goo.gl/maps/1234takayama',
+                        websiteLink: 'https://www.hida.jp/english/',
+                        price: 'Free'
+                    },
+                    'hida-beef': {
+                        name: 'Hida Beef Restaurant',
+                        time: '12:00',
+                        description: 'Lunch at Maruaki for famous Hida beef.',
+                        location: 'Maruaki Restaurant',
+                        mapLink: 'https://goo.gl/maps/1234maruaki',
+                        websiteLink: 'https://www.hida-maruaki.com/',
+                        price: '¥3500'
+                    }
+                }
+            },
+            7: {
+                title: 'Departure',
+                activities: {
+                    'yanagibashi': {
+                        name: 'Yanagibashi Market',
+                        time: '09:00',
+                        description: 'Final shopping at Yanagibashi Central Market.',
+                        location: 'Yanagibashi Market',
+                        mapLink: 'https://goo.gl/maps/1234yanagibashi',
+                        websiteLink: 'https://www.yanagibashi-market.com/',
+                        price: 'Free'
+                    }
+                }
+            }
+        };
+
+        // Update activity dropdown based on selected day
+        function updateActivityDropdown() {
+            const daySelect = document.getElementById('daySelect');
+            const activitySelect = document.getElementById('activitySelect');
+            const selectedDay = daySelect.value;
+            
+            // Clear existing options
+            activitySelect.innerHTML = '<option value="">Choose an activity...</option>';
+            
+            // Add new options based on selected day
+            const activities = itineraryData[selectedDay].activities;
+            Object.entries(activities).forEach(([key, activity]) => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = activity.name;
+                activitySelect.appendChild(option);
+            });
+        }
+
+        // Update activity details when activity is selected
+        function updateActivityDetails() {
+            const daySelect = document.getElementById('daySelect');
+            const activitySelect = document.getElementById('activitySelect');
+            const selectedDay = daySelect.value;
+            const selectedActivity = activitySelect.value;
+            
+            if (selectedActivity) {
+                const activity = itineraryData[selectedDay].activities[selectedActivity];
+                
+                // Update form fields
+                document.getElementById('activityTime').value = activity.time;
+                document.getElementById('activityLocation').value = activity.location;
+                document.getElementById('activityDescription').value = activity.description;
+                
+                // Update links section
+                const linksSection = document.querySelector('.activity-links');
+                linksSection.innerHTML = `
+                    <div class="link-buttons">
+                        <a href="${activity.mapLink}" target="_blank" class="map-btn">
+                            <i class="fas fa-map-marker-alt"></i> View on Map
+                        </a>
+                        <a href="${activity.websiteLink}" target="_blank" class="website-btn">
+                            <i class="fas fa-globe"></i> Official Website
+                        </a>
+                    </div>
+                    <div class="price-info">
+                        <i class="fas fa-yen-sign"></i> Entry Fee: ${activity.price}
+                    </div>
+                `;
+            }
+        }
+
+        // Event listeners
+        document.getElementById('daySelect').addEventListener('change', () => {
+            updateActivityDropdown();
+            document.getElementById('dayTitle').value = `Day ${daySelect.value} - ${itineraryData[daySelect.value].title}`;
+        });
+
+        document.getElementById('activitySelect').addEventListener('change', updateActivityDetails);
+
+        // Initialize the form
+        updateActivityDropdown();
+
+        // Initialize itinerary from localStorage or default data
+        let itinerary = JSON.parse(localStorage.getItem('tripItinerary')) || {
+            days: [
+                {
+                    day: 1,
+                    title: "Arrival & Nagoya Highlights",
+                    activities: [
+                        {
+                            time: "9:30 AM - 12:00 PM",
+                            location: "Nagoya Castle",
+                            description: "Visit the historic castle and its gardens",
+                            confirmed: false
+                        }
+                    ]
+                },
+                // ... other days
+            ]
+        };
+
+        // Save itinerary to localStorage
+        function saveItinerary() {
+            localStorage.setItem('tripItinerary', JSON.stringify(itinerary));
+        }
+
+        // Render day editor
+        function renderDayEditor() {
+            const editor = document.getElementById('dayEditor');
+            editor.innerHTML = '';
+
+            itinerary.days.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'day-editor-card';
+                dayElement.innerHTML = `
+                    <h3>Day ${day.day}</h3>
+                    <div class="day-title">
+                        <input type="text" value="${day.title}" 
+                            onchange="updateDayTitle(${day.day}, this.value)">
+                    </div>
+                    <div class="activities-list">
+                        ${day.activities.map((activity, index) => `
+                            <div class="activity-editor">
+                                <div class="activity-header">
+                                    <input type="text" value="${activity.time}" 
+                                        onchange="updateActivityTime(${day.day}, ${index}, this.value)">
+                                    <input type="text" value="${activity.location}" 
+                                        onchange="updateActivityLocation(${day.day}, ${index}, this.value)">
+                                    <button onclick="deleteActivity(${day.day}, ${index})" class="delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                <textarea onchange="updateActivityDescription(${day.day}, ${index}, this.value)"
+                                    placeholder="Activity description">${activity.description}</textarea>
+                                <div class="activity-actions">
+                                    <label>
+                                        <input type="checkbox" ${activity.confirmed ? 'checked' : ''}
+                                            onchange="toggleActivityConfirmation(${day.day}, ${index})">
+                                        Confirmed
+                                    </label>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button onclick="addActivity(${day.day})" class="add-activity-btn">
+                        <i class="fas fa-plus"></i> Add Activity
+                    </button>
+                `;
+                editor.appendChild(dayElement);
+            });
+        }
+
+        // Update functions
+        function updateDayTitle(day, title) {
+            const dayIndex = itinerary.days.findIndex(d => d.day === day);
+            itinerary.days[dayIndex].title = title;
+            saveItinerary();
+        }
+
+        function updateActivityTime(day, activityIndex, time) {
+            const dayIndex = itinerary.days.findIndex(d => d.day === day);
+            itinerary.days[dayIndex].activities[activityIndex].time = time;
+            saveItinerary();
+        }
+
+        function updateActivityLocation(day, activityIndex, location) {
+            const dayIndex = itinerary.days.findIndex(d => d.day === day);
+            itinerary.days[dayIndex].activities[activityIndex].location = location;
+            saveItinerary();
+        }
+
+        function updateActivityDescription(day, activityIndex, description) {
+            const dayIndex = itinerary.days.findIndex(d => d.day === day);
+            itinerary.days[dayIndex].activities[activityIndex].description = description;
+            saveItinerary();
+        }
+
+        function toggleActivityConfirmation(day, activityIndex) {
+            const dayIndex = itinerary.days.findIndex(d => d.day === day);
+            itinerary.days[dayIndex].activities[activityIndex].confirmed = 
+                !itinerary.days[dayIndex].activities[activityIndex].confirmed;
+            saveItinerary();
+        }
+
+        function addActivity(day) {
+            const dayIndex = itinerary.days.findIndex(d => d.day === day);
+            itinerary.days[dayIndex].activities.push({
+                time: "New Time",
+                location: "New Location",
+                description: "Activity description",
+                confirmed: false
+            });
+            saveItinerary();
+            renderDayEditor();
+        }
+
+        function deleteActivity(day, activityIndex) {
+            const dayIndex = itinerary.days.findIndex(d => d.day === day);
+            itinerary.days[dayIndex].activities.splice(activityIndex, 1);
+            saveItinerary();
+            renderDayEditor();
+        }
+
+        // AI Assistant
+        document.getElementById('generateBtn').addEventListener('click', async () => {
+            const prompt = document.getElementById('aiPrompt').value;
+            const response = document.getElementById('aiResponse');
+            
+            response.innerHTML = '<div class="loading">Generating changes...</div>';
+            
+            // Here you would typically make an API call to your AI service
+            // For now, we'll simulate a response
+            setTimeout(() => {
+                response.innerHTML = `
+                    <div class="ai-suggestion">
+                        <h4>Suggested Changes:</h4>
+                        <p>Based on your request: "${prompt}"</p>
+                        <div class="suggestion-actions">
+                            <button onclick="applyAISuggestion()" class="apply-btn">
+                                Apply Changes
+                            </button>
+                            <button onclick="discardAISuggestion()" class="discard-btn">
+                                Discard
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }, 1500);
+        });
+
+        function applyAISuggestion() {
+            // Here you would apply the AI's suggested changes
+            renderDayEditor();
+            document.getElementById('aiResponse').innerHTML = '';
+        }
+
+        function discardAISuggestion() {
+            document.getElementById('aiResponse').innerHTML = '';
+        }
+
+        // Initial render
+        renderDayEditor();
+    </script>
+
+    <style>
+        /* Add styles for links section */
+        .activity-links {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .link-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .map-btn, .website-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+
+        .map-btn {
+            background: #e74c3c;
+        }
+
+        .website-btn {
+            background: #3498db;
+        }
+
+        .map-btn:hover, .website-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .price-info {
+            color: #666;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</body>
+</html> 

@@ -1,0 +1,92 @@
+Nagoya Trip Images - Sources and Descriptions
+
+Main Locations:
+1. nagoya-castle.jpg
+   - Source: https://www.nagoyajo.city.nagoya.jp/
+   - Description: Historic Nagoya Castle with its iconic golden shachihoko statues
+   - License: Public domain (government website)
+
+2. atsuta-shrine.jpg
+   - Source: https://www.atsutajingu.or.jp/
+   - Description: Atsuta Shrine, one of Japan's most important shrines
+   - License: Public domain (government website)
+
+3. toyota-museum.jpg
+   - Source: https://www.toyota.co.jp/Museum/
+   - Description: Toyota Commemorative Museum of Industry and Technology
+   - License: Public domain (corporate website)
+
+4. science-museum.jpg
+   - Source: https://www.ncsm.city.nagoya.jp/
+   - Description: Nagoya City Science Museum with its iconic globe
+   - License: Public domain (government website)
+
+5. nagoya-tv-tower.jpg
+   - Source: https://www.nagoya-tv-tower.co.jp/
+   - Description: Nagoya TV Tower, a landmark of the city
+   - License: Public domain (government website)
+
+6. noritake-garden.jpg
+   - Source: https://www.noritake.co.jp/
+   - Description: Noritake Garden, beautiful ceramics museum and garden
+   - License: Public domain (corporate website)
+
+7. osu-kannon.jpg
+   - Source: https://www.osukannon.jp/
+   - Description: Osu Kannon Temple and shopping street
+   - License: Public domain (government website)
+
+8. jazz-dream.jpg
+   - Source: https://www.jazzdream.co.jp/
+   - Description: Jazz Dream Nagashima outlet mall
+   - License: Public domain (corporate website)
+
+Food and Restaurants:
+1. kishimen.jpg
+   - Source: https://www.kishimen-sumiyoshi.com/
+   - Description: Traditional Nagoya-style kishimen noodles
+   - License: Public domain (restaurant website)
+
+2. miso-katsu.jpg
+   - Source: https://www.yabaton.com/
+   - Description: Yabaton's famous miso katsu
+   - License: Public domain (restaurant website)
+
+3. chicken-wings.jpg
+   - Source: https://www.yamachan.co.jp/
+   - Description: Sekai no Yamachan's signature chicken wings
+   - License: Public domain (restaurant website)
+
+4. hitsumabushi.jpg
+   - Source: https://www.horaiken.co.jp/
+   - Description: Atsuta Horaiken's hitsumabushi (grilled eel)
+   - License: Public domain (restaurant website)
+
+Hotel and Airport:
+1. richmond-hotel.jpg
+   - Source: https://richmondhotel.jp/nagoya-nayabashi/
+   - Description: Richmond Hotel Nagoya Nayabashi exterior
+   - License: Public domain (hotel website)
+
+2. centrair-airport.jpg
+   - Source: https://www.centrair.jp/
+   - Description: Chubu Centrair International Airport terminal
+   - License: Public domain (government website)
+
+General:
+1. nagoya-skyline.jpg
+   - Source: https://www.city.nagoya.jp/
+   - Description: Nagoya city skyline
+   - License: Public domain (government website)
+
+2. sakae-district.jpg
+   - Source: https://www.city.nagoya.jp/
+   - Description: Sakae district shopping area
+   - License: Public domain (government website)
+
+Note: All images should be:
+- High resolution (at least 1920x1080)
+- Optimized for web (compressed)
+- In JPG format
+- With proper attribution
+- Following fair use guidelines 

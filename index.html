@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nagoya Trip Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nagoya Trip">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="language-switcher">
+                <button onclick="toggleLanguage()" class="lang-btn">
+                    <i class="fas fa-globe"></i>
+                    <span class="lang-text">中文</span>
+                </button>
+            </div>
+            <h1 data-translate="welcome-title">Welcome to Nagoya Family Trip</h1>
+            <p class="subtitle" data-translate="trip-overview">Trip Overview</p>
+            <div class="install-prompt">
+                <button id="installBtn" class="install-btn">
+                    <i class="fas fa-download"></i> Install App
+                </button>
+            </div>
+        </header>
+
+        <div class="qr-section">
+            <h2>Scan to Install App</h2>
+            <div id="qrcode"></div>
+            <p class="qr-instructions">Open with your phone's camera to install the app</p>
+        </div>
+
+        <div class="trip-info">
+            <h2 data-translate="trip-overview">Trip Overview</h2>
+            <p data-translate="trip-duration">Duration: 7 Days</p>
+            <p data-translate="trip-dates">Dates: July 15-21, 2024</p>
+            <p data-translate="trip-location">Location: Nagoya, Japan</p>
+            <p data-translate="trip-description">A family-friendly adventure through the heart of Japan</p>
+            <a href="travelers.html" class="info-card">
+                <i class="fas fa-users"></i>
+                <h3>Travelers</h3>
+                <p>Family of 3 (Two 57-year-olds, One 16-year-old)</p>
+            </a>
+            <a href="duration.html" class="info-card">
+                <i class="fas fa-calendar"></i>
+                <h3>Duration</h3>
+                <p>7 Days</p>
+            </a>
+            <a href="budget.html" class="info-card">
+                <i class="fas fa-wallet"></i>
+                <h3>Budget</h3>
+                <p>¥358,750 (Approx. $2,400 USD)</p>
+            </a>
+        </div>
+
+        <div class="quick-actions">
+            <button class="action-btn" onclick="showToday()">
+                <i class="fas fa-calendar-day"></i>
+                Today's Activities
+            </button>
+            <a href="budget.html" class="budget-btn">
+                <i class="fas fa-wallet"></i>
+                View Budget Details
+            </a>
+        </div>
+
+        <div class="itinerary-grid">
+            <a href="day1.html" class="day-card" data-day="1">
+                <h2>Day 1</h2>
+                <p>Arrival & Nagoya Highlights</p>
+                <div class="day-preview">
+                    <span class="location">Nagoya Castle</span>
+                    <span class="time">9:30 AM - 12:00 PM</span>
+                </div>
+            </a>
+            <a href="day2.html" class="day-card" data-day="2">
+                <h2>Day 2</h2>
+                <p>Technology & Science</p>
+                <div class="day-preview">
+                    <span class="location">Toyota Museum</span>
+                    <span class="time">9:30 AM - 12:00 PM</span>
+                </div>
+            </a>
+            <a href="day3.html" class="day-card" data-day="3">
+                <h2>Day 3</h2>
+                <p>Theme Park & Shopping</p>
+                <div class="day-preview">
+                    <span class="location">Nagashima Spa Land</span>
+                    <span class="time">9:30 AM - 3:00 PM</span>
+                </div>
+            </a>
+            <a href="day4.html" class="day-card" data-day="4">
+                <h2>Day 4</h2>
+                <p>UNESCO Village</p>
+                <div class="day-preview">
+                    <span class="location">Shirakawa-go</span>
+                    <span class="time">8:00 AM - 5:00 PM</span>
+                </div>
+            </a>
+            <a href="day5.html" class="day-card" data-day="5">
+                <h2>Day 5</h2>
+                <p>Culture & Gardens</p>
+                <div class="day-preview">
+                    <span class="location">Atsuta Shrine</span>
+                    <span class="time">9:30 AM - 11:30 AM</span>
+                </div>
+            </a>
+            <a href="day6.html" class="day-card" data-day="6">
+                <h2>Day 6</h2>
+                <p>Hida Beef & Takayama</p>
+                <div class="day-preview">
+                    <span class="location">Takayama</span>
+                    <span class="time">7:30 AM - 7:00 PM</span>
+                </div>
+            </a>
+            <a href="day7.html" class="day-card" data-day="7">
+                <h2>Day 7</h2>
+                <p>Departure</p>
+                <div class="day-preview">
+                    <span class="location">Yanagibashi Market</span>
+                    <span class="time">9:00 AM - 11:00 AM</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="app-nav">
+            <a href="index.html" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="budget.html" class="nav-item">
+                <i class="fas fa-wallet"></i>
+                <span>Budget</span>
+            </a>
+            <a href="itinerary-editor.html" class="nav-item">
+                <i class="fas fa-edit"></i>
+                <span>Edit</span>
+            </a>
+            <a href="saved.html" class="nav-item">
+                <i class="fas fa-bookmark"></i>
+                <span>Saved</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                        // Request notification permission
+                        if ('Notification' in window) {
+                            Notification.requestPermission();
+                        }
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+        // Generate QR Code
+        window.addEventListener('load', () => {
+            const qr = qrcode(0, 'M');
+            // Use the current URL if it's already on GitHub Pages, otherwise use the correct GitHub Pages URL
+            const siteUrl = window.location.hostname.includes('github.io') 
+                ? window.location.href 
+                : 'https://inducedcande172.github.io/nagoya-trip-planner/';
+            qr.addData(siteUrl);
+            qr.make();
+            document.getElementById('qrcode').innerHTML = qr.createImgTag(6);
+        });
+
+        // Install Prompt
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                installBtn.style.display = 'none';
+            }
+        });
+
+        // Check if date is within vacation period
+        function isVacationPeriod(date) {
+            const startDate = new Date(2024, 5, 10); // June 10th, 2024
+            const endDate = new Date(2024, 7, 31);   // August 31st, 2024
+            return date >= startDate && date <= endDate;
+        }
+
+        // Show today's activities
+        function showToday() {
+            const today = new Date();
+            
+            if (!isVacationPeriod(today)) {
+                // Create modal for not-in-vacation message
+                const modal = document.createElement('div');
+                modal.className = 'vacation-modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <h3>Not Vacation Time Yet</h3>
+                        <p>Your Nagoya trip is scheduled for June 10th - August 31st, 2024.</p>
+                        <p>Days until vacation: ${getDaysUntilVacation()}</p>
+                        <button onclick="this.parentElement.parentElement.remove()" class="close-btn">
+                            <i class="fas fa-times"></i> Close
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                return;
+            }
+
+            // If within vacation period, show today's activities
+            window.location.href = `day${getCurrentDay()}.html`;
+        }
+
+        // Calculate days until vacation
+        function getDaysUntilVacation() {
+            const today = new Date();
+            const startDate = new Date(2024, 5, 10); // June 10th, 2024
+            
+            if (today >= startDate) {
+                return "Vacation has started!";
+            }
+            
+            const diffTime = Math.abs(startDate - today);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return `${diffDays} days`;
+        }
+
+        // Get current day number of the vacation (1-7)
+        function getCurrentDay() {
+            const today = new Date();
+            const startDate = new Date(2024, 5, 10); // June 10th, 2024
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return Math.min(diffDays, 7); // Return day number (capped at 7)
+        }
+
+        function showSaved() {
+            // Show saved places
+            window.location.href = '/saved';
+        }
+
+        // Handle offline status
+        window.addEventListener('online', () => {
+            document.body.classList.remove('offline');
+        });
+
+        window.addEventListener('offline', () => {
+            document.body.classList.add('offline');
+        });
+
+        // Language switcher
+        let isChinese = false;
+        const translations = {
+            title: {
+                en: "Nagoya Trip Planner",
+                zh: "名古屋旅遊規劃"
+            },
+            subtitle: {
+                en: "7-Day Family Adventure in Japan",
+                zh: "日本7天家庭之旅"
+            },
+            // Add more translations as needed
+        };
+
+        function toggleLanguage() {
+            isChinese = !isChinese;
+            const langText = document.querySelector('.lang-text');
+            langText.textContent = isChinese ? 'English' : '中文';
+            
+            // Update text content
+            document.querySelector('h1').textContent = translations.title[isChinese ? 'zh' : 'en'];
+            document.querySelector('.subtitle').textContent = translations.subtitle[isChinese ? 'zh' : 'en'];
+        }
+    </script>
+
+    <style>
+        /* Modal Styles */
+        .vacation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .modal-content p:last-of-type {
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .close-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 auto;
+            transition: transform 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</body>
+</html> 

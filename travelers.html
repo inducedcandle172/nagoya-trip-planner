@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Travelers - Nagoya Trip Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nagoya Trip">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="app-container">
+        <button class="back-button" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i>
+            Back to Itinerary
+        </button>
+
+        <header class="app-header">
+            <h1>Travelers</h1>
+            <p class="subtitle">Family Trip Details</p>
+        </header>
+
+        <div class="travelers-grid">
+            <div class="traveler-card">
+                <div class="traveler-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Parent 1</h3>
+                <p class="age">57 years old</p>
+                <div class="traveler-details">
+                    <p><i class="fas fa-passport"></i> Passport: Valid</p>
+                    <p><i class="fas fa-plane"></i> Flight: Confirmed</p>
+                    <p><i class="fas fa-hotel"></i> Accommodation: Booked</p>
+                </div>
+            </div>
+
+            <div class="traveler-card">
+                <div class="traveler-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Parent 2</h3>
+                <p class="age">57 years old</p>
+                <div class="traveler-details">
+                    <p><i class="fas fa-passport"></i> Passport: Valid</p>
+                    <p><i class="fas fa-plane"></i> Flight: Confirmed</p>
+                    <p><i class="fas fa-hotel"></i> Accommodation: Booked</p>
+                </div>
+            </div>
+
+            <div class="traveler-card">
+                <div class="traveler-avatar">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3>Child</h3>
+                <p class="age">16 years old</p>
+                <div class="traveler-details">
+                    <p><i class="fas fa-passport"></i> Passport: Valid</p>
+                    <p><i class="fas fa-plane"></i> Flight: Confirmed</p>
+                    <p><i class="fas fa-hotel"></i> Accommodation: Booked</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="travel-info-section">
+            <h2>Travel Documents</h2>
+            <div class="document-list">
+                <div class="document-item">
+                    <i class="fas fa-file-alt"></i>
+                    <div class="document-info">
+                        <h3>Travel Insurance</h3>
+                        <p>Coverage: Full family coverage</p>
+                        <p>Policy Number: #123456789</p>
+                    </div>
+                </div>
+                <div class="document-item">
+                    <i class="fas fa-file-alt"></i>
+                    <div class="document-info">
+                        <h3>Visa Information</h3>
+                        <p>Status: Not required for short stays</p>
+                        <p>Duration: Up to 90 days</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html> 

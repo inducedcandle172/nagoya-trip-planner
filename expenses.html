@@ -103,10 +103,62 @@
         </nav>
     </div>
 
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-content">
+            <i class="fas fa-exclamation-triangle modal-icon"></i>
+            <h2 class="modal-title">Delete Expense</h2>
+            <p class="modal-message" id="deleteModalMessage"></p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" id="cancelDelete">Cancel</button>
+                <button class="modal-btn modal-btn-delete" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Initialize expenses from localStorage or empty array
         let expenses = JSON.parse(localStorage.getItem('tripExpenses')) || [];
+        let expenseToDelete = null;
         
+        // Modal functionality
+        const modal = document.getElementById('deleteModal');
+        const modalMessage = document.getElementById('deleteModalMessage');
+        const cancelBtn = document.getElementById('cancelDelete');
+        const confirmBtn = document.getElementById('confirmDelete');
+
+        function showDeleteModal(expense) {
+            expenseToDelete = expense;
+            modalMessage.textContent = `Are you sure you want to delete "${expense.name}" (¥${expense.amount.toLocaleString()})?`;
+            modal.style.display = 'block';
+        }
+
+        function hideDeleteModal() {
+            modal.style.display = 'none';
+            expenseToDelete = null;
+        }
+
+        cancelBtn.addEventListener('click', hideDeleteModal);
+        confirmBtn.addEventListener('click', () => {
+            if (expenseToDelete) {
+                const index = expenses.findIndex(e => e === expenseToDelete);
+                if (index !== -1) {
+                    expenses.splice(index, 1);
+                    localStorage.setItem('tripExpenses', JSON.stringify(expenses));
+                    renderExpenses();
+                    updateSummary();
+                }
+            }
+            hideDeleteModal();
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideDeleteModal();
+            }
+        });
+
         // Update summary
         function updateSummary() {
             const totalSpent = expenses.reduce((sum, expense) => sum + expense.amount, 0);
@@ -155,10 +207,8 @@
             document.querySelectorAll('.delete-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const index = parseInt(e.currentTarget.dataset.index);
-                    expenses.splice(index, 1);
-                    localStorage.setItem('tripExpenses', JSON.stringify(expenses));
-                    renderExpenses();
-                    updateSummary();
+                    const expense = expenses[index];
+                    showDeleteModal(expense);
                 });
             });
         }

@@ -16,14 +16,16 @@
 </head>
 <body>
     <div class="app-container">
-        <button class="back-button" onclick="window.location.href='index.html'">
-            <i class="fas fa-arrow-left"></i>
-            Back to Itinerary
-        </button>
-
         <header class="app-header">
-            <h1>Travelers</h1>
-            <p class="subtitle">Family Trip Details</p>
+            <div class="header-content">
+                <button onclick="window.location.href='index.html'" class="back-button" data-translate="back-to-itinerary">
+                    <i class="fas fa-arrow-left"></i> Back to Itinerary
+                </button>
+                <div class="header-title">
+                    <h1>Travelers</h1>
+                    <p class="subtitle">Family Trip Details</p>
+                </div>
+            </div>
         </header>
 
         <div class="travelers-grid">

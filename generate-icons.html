@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Icons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .icon-preview {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate App Icons</h1>
+    
+    <div class="icon-preview">
+        <h2>App Icons</h2>
+        <canvas id="icon72" width="72" height="72"></canvas>
+        <canvas id="icon96" width="96" height="96"></canvas>
+        <canvas id="icon128" width="128" height="128"></canvas>
+        <canvas id="icon144" width="144" height="144"></canvas>
+        <canvas id="icon152" width="152" height="152"></canvas>
+        <canvas id="icon192" width="192" height="192"></canvas>
+        <canvas id="icon384" width="384" height="384"></canvas>
+        <canvas id="icon512" width="512" height="512"></canvas>
+    </div>
+
+    <div class="icon-preview">
+        <h2>iPad Splash Screens</h2>
+        <canvas id="splash1536" width="1536" height="2048"></canvas>
+        <canvas id="splash1668" width="1668" height="2388"></canvas>
+        <canvas id="splash1668_2" width="1668" height="2224"></canvas>
+        <canvas id="splash1620" width="1620" height="2160"></canvas>
+    </div>
+
+    <div class="icon-preview">
+        <h2>iPhone Splash Screens</h2>
+        <canvas id="splash1290" width="1290" height="2796"></canvas>
+        <canvas id="splash1179" width="1179" height="2556"></canvas>
+        <canvas id="splash1284" width="1284" height="2778"></canvas>
+        <canvas id="splash1170" width="1170" height="2532"></canvas>
+        <canvas id="splash1125" width="1125" height="2436"></canvas>
+    </div>
+
+    <button onclick="generateAllIcons()">Generate All Icons</button>
+    <button onclick="downloadAllIcons()">Download All Icons</button>
+
+    <script>
+        function drawIcon(canvas) {
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            
+            // Background
+            ctx.fillStyle = '#3498db';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Text
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size/2}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('N', size/2, size/2);
+        }
+
+        function drawSplashScreen(canvas) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Background
+            ctx.fillStyle = '#3498db';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Logo
+            const logoSize = Math.min(width, height) * 0.3;
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${logoSize}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('N', width/2, height/2);
+            
+            // App Name
+            ctx.font = `${logoSize/2}px Arial`;
+            ctx.fillText('Nagoya Trip', width/2, height/2 + logoSize);
+        }
+
+        function generateAllIcons() {
+            // Generate app icons
+            ['icon72', 'icon96', 'icon128', 'icon144', 'icon152', 'icon192', 'icon384', 'icon512'].forEach(id => {
+                drawIcon(document.getElementById(id));
+            });
+
+            // Generate iPad splash screens
+            ['splash1536', 'splash1668', 'splash1668_2', 'splash1620'].forEach(id => {
+                drawSplashScreen(document.getElementById(id));
+            });
+
+            // Generate iPhone splash screens
+            ['splash1290', 'splash1179', 'splash1284', 'splash1170', 'splash1125'].forEach(id => {
+                drawSplashScreen(document.getElementById(id));
+            });
+        }
+
+        function downloadCanvas(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function downloadAllIcons() {
+            // Download app icons
+            ['icon72', 'icon96', 'icon128', 'icon144', 'icon152', 'icon192', 'icon384', 'icon512'].forEach(id => {
+                downloadCanvas(document.getElementById(id), `${id}.png`);
+            });
+
+            // Download iPad splash screens
+            ['splash1536', 'splash1668', 'splash1668_2', 'splash1620'].forEach(id => {
+                downloadCanvas(document.getElementById(id), `${id}.png`);
+            });
+
+            // Download iPhone splash screens
+            ['splash1290', 'splash1179', 'splash1284', 'splash1170', 'splash1125'].forEach(id => {
+                downloadCanvas(document.getElementById(id), `${id}.png`);
+            });
+        }
+
+        // Generate icons when page loads
+        window.onload = generateAllIcons;
+    </script>
+</body>
+</html> 
